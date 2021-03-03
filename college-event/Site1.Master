@@ -1,19 +1,87 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="college_event.Site1" %>
+﻿<%@ master language="C#" autoeventwireup="true" codebehind="Site1.master.cs" inherits="college_event.Site1" %>
 
 <!DOCTYPE html>
 
 <html>
 <head runat="server">
-    <title></title>
+    <title>Home</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+
+    <!-- Datatable css -->
+    <link href="Datatable/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+    <!-- Fontawesome css -->
+    <link href="Fontawesome/css/all.css" rel="stylesheet" />
+
+    <!-- Datatable js -->
+    <script src="Datatable/js/jquery.dataTables.min.js"></script>
+
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
     <form id="form1" runat="server">
         <div>
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a class="navbar-brand" href="#">Events
+                </a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="homepage.aspx">Home</a>
+                        </li>
+                    </ul>
+
+                    <ul class="navbar-nav">
+                        <li class="nav-item active">
+                            <asp:LinkButton class="nav-link" ID="login" runat="server">Login</asp:LinkButton>
+                        </li>
+                        <li class="nav-item active">
+                            <asp:LinkButton class="nav-link" ID="register" runat="server">Register</asp:LinkButton>
+                        </li>
+                        <li class="nav-item active">
+                            <asp:LinkButton class="nav-link" ID="logout" runat="server">Logout</asp:LinkButton>
+                        </li>
+
+                        <li class="nav-item active">
+                            <asp:LinkButton class="nav-link" ID="greetings" runat="server">Hello user</asp:LinkButton>
+                        </li>
+                    </ul>
+                </div>
+
+            </nav>
+        </div>
+
+        <!-- Main Content Placeholder -->
+        <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>
+        <!-- Main Content Placeholder -->
+
+        <!-- Footer -->
+        <footer>
+            <div id="footer2" class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                        <p style="color: whitesmoke">&copy All right Reversed. <a class="footerlinks" href="#" target="_blank">COP-4710 Group</a></p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Footer -->
+
     </form>
 </body>
 </html>
