@@ -33,6 +33,9 @@ namespace college_event
     partial void Insertmember_master_tbl(member_master_tbl instance);
     partial void Updatemember_master_tbl(member_master_tbl instance);
     partial void Deletemember_master_tbl(member_master_tbl instance);
+    partial void Insertuniversity_profile(university_profile instance);
+    partial void Updateuniversity_profile(university_profile instance);
+    partial void Deleteuniversity_profile(university_profile instance);
     #endregion
 		
 		public CollegeEventDataContext() : 
@@ -70,6 +73,14 @@ namespace college_event
 			get
 			{
 				return this.GetTable<member_master_tbl>();
+			}
+		}
+		
+		public System.Data.Linq.Table<university_profile> university_profiles
+		{
+			get
+			{
+				return this.GetTable<university_profile>();
 			}
 		}
 	}
@@ -183,6 +194,164 @@ namespace college_event
 					this._status = value;
 					this.SendPropertyChanged("status");
 					this.OnstatusChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.university_profile")]
+	public partial class university_profile : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _name;
+		
+		private string _location;
+		
+		private string _description;
+		
+		private int _number_of_students;
+		
+		private string _university_img;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnnameChanging(string value);
+    partial void OnnameChanged();
+    partial void OnlocationChanging(string value);
+    partial void OnlocationChanged();
+    partial void OndescriptionChanging(string value);
+    partial void OndescriptionChanged();
+    partial void Onnumber_of_studentsChanging(int value);
+    partial void Onnumber_of_studentsChanged();
+    partial void Onuniversity_imgChanging(string value);
+    partial void Onuniversity_imgChanged();
+    #endregion
+		
+		public university_profile()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this.OnnameChanging(value);
+					this.SendPropertyChanging();
+					this._name = value;
+					this.SendPropertyChanged("name");
+					this.OnnameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_location", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string location
+		{
+			get
+			{
+				return this._location;
+			}
+			set
+			{
+				if ((this._location != value))
+				{
+					this.OnlocationChanging(value);
+					this.SendPropertyChanging();
+					this._location = value;
+					this.SendPropertyChanged("location");
+					this.OnlocationChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_description", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string description
+		{
+			get
+			{
+				return this._description;
+			}
+			set
+			{
+				if ((this._description != value))
+				{
+					this.OndescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._description = value;
+					this.SendPropertyChanged("description");
+					this.OndescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_number_of_students", DbType="Int NOT NULL")]
+		public int number_of_students
+		{
+			get
+			{
+				return this._number_of_students;
+			}
+			set
+			{
+				if ((this._number_of_students != value))
+				{
+					this.Onnumber_of_studentsChanging(value);
+					this.SendPropertyChanging();
+					this._number_of_students = value;
+					this.SendPropertyChanged("number_of_students");
+					this.Onnumber_of_studentsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_university_img", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string university_img
+		{
+			get
+			{
+				return this._university_img;
+			}
+			set
+			{
+				if ((this._university_img != value))
+				{
+					this.Onuniversity_imgChanging(value);
+					this.SendPropertyChanging();
+					this._university_img = value;
+					this.SendPropertyChanged("university_img");
+					this.Onuniversity_imgChanged();
 				}
 			}
 		}

@@ -68,6 +68,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CreateUniversityProfile.aspx" />
     <Content Include="Datatable\css\jquery.dataTables.min.css" />
     <Content Include="Datatable\js\jquery.dataTables.min.js" />
     <Content Include="Fontawesome\css\all.css" />
@@ -1707,6 +1708,9 @@
     <Content Include="Fontawesome\webfonts\fa-regular-400.svg" />
     <Content Include="Fontawesome\webfonts\fa-solid-900.svg" />
     <Content Include="home.aspx" />
+    <Content Include="University_Images\b1.jpg" />
+    <Content Include="University_Images\ucf image.jpg" />
+    <Content Include="University_Images\university.png" />
     <Content Include="Images\user.png" />
     <Content Include="Login.aspx" />
     <Content Include="Register.aspx" />
@@ -1717,6 +1721,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CollegeEvent.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="CreateUniversityProfile.aspx.cs">
+      <DependentUpon>CreateUniversityProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreateUniversityProfile.aspx.designer.cs">
+      <DependentUpon>CreateUniversityProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="home.aspx.cs">
       <DependentUpon>home.aspx</DependentUpon>
@@ -1824,6 +1835,7 @@
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
