@@ -13,5 +13,17 @@ namespace college_event
         {
 
         }
+
+        //Create Event
+        protected void LinkButton1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("CreateEventPage.aspx");
+        }
+
+        // Create University Profile
+        protected void LinkButton2_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("CreateUniversityProfile.aspx");
+        }
     }
 }

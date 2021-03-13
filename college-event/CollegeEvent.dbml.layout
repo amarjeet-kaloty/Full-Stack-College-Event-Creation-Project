@@ -14,5 +14,17 @@
         <elementListCompartment Id="f3c61981-5d1b-4f6f-924a-795b2df45b29" absoluteBounds="0.51499999999999968, 2.835, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="9b31ceea-621d-49d6-be6e-588f830ef054" absoluteBounds="2.875, 2.375, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/CollegeEventDataContext/set_event_location" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b7c246cc-01c9-4a31-9eb4-00c2844ee7c7" absoluteBounds="2.8899999999999997, 2.835, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="01cd5f6f-2738-4155-a59c-ea6ef557bae9" absoluteBounds="5.25, 2.375, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/CollegeEventDataContext/Event" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d47dfbd8-33d0-4fc6-9e39-fcdc30cf8f69" absoluteBounds="5.265, 2.835, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

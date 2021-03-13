@@ -68,6 +68,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CreateEventPage.aspx" />
     <Content Include="CreateUniversityProfile.aspx" />
     <Content Include="Datatable\css\jquery.dataTables.min.css" />
     <Content Include="Datatable\js\jquery.dataTables.min.js" />
@@ -1708,6 +1709,7 @@
     <Content Include="Fontawesome\webfonts\fa-regular-400.svg" />
     <Content Include="Fontawesome\webfonts\fa-solid-900.svg" />
     <Content Include="home.aspx" />
+    <Content Include="SetLocation.aspx" />
     <Content Include="University_Images\b1.jpg" />
     <Content Include="University_Images\ucf image.jpg" />
     <Content Include="University_Images\university.png" />
@@ -1717,10 +1719,18 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\createEvent.cs" />
     <Compile Include="CollegeEvent.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CollegeEvent.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="CreateEventPage.aspx.cs">
+      <DependentUpon>CreateEventPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreateEventPage.aspx.designer.cs">
+      <DependentUpon>CreateEventPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="CreateUniversityProfile.aspx.cs">
       <DependentUpon>CreateUniversityProfile.aspx</DependentUpon>
@@ -1750,6 +1760,13 @@
     </Compile>
     <Compile Include="Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SetLocation.aspx.cs">
+      <DependentUpon>SetLocation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SetLocation.aspx.designer.cs">
+      <DependentUpon>SetLocation.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site1.Master.cs">
       <DependentUpon>Site1.Master</DependentUpon>

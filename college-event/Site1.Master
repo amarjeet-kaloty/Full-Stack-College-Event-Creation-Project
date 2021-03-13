@@ -39,16 +39,16 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="homepage.aspx">Home</a>
+                            <a class="nav-link" href="home.aspx">Home</a>
                         </li>
                     </ul>
 
                     <ul class="navbar-nav">
                         <li class="nav-item active">
-                            <asp:LinkButton class="nav-link" ID="login" runat="server">Login</asp:LinkButton>
+                            <asp:LinkButton class="nav-link" ID="login" runat="server" OnClick="login_Click">Login</asp:LinkButton>
                         </li>
                         <li class="nav-item active">
-                            <asp:LinkButton class="nav-link" ID="register" runat="server" >Register</asp:LinkButton>
+                            <asp:LinkButton class="nav-link" ID="register" runat="server" OnClick="register_Click" >Register</asp:LinkButton>
                         </li>
                         <li class="nav-item active">
                             <asp:LinkButton class="nav-link" ID="logout" runat="server">Logout</asp:LinkButton>

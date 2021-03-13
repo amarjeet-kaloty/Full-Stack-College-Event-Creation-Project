@@ -13,5 +13,17 @@ namespace college_event
         {
 
         }
+
+        // Register Page
+        protected void register_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Register.aspx");
+        }
+
+        // Login Page
+        protected void login_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Login.aspx");
+        }
     }
 }
