@@ -19,7 +19,11 @@ namespace college_event
         {
             CollegeEventDataContext db = new CollegeEventDataContext();
             var newEvent = new set_event_location();
-            newEvent.location = txt_location.Text.Trim();
+            var rand = new Random();
+            int event_number = rand.Next(20200, 30500);
+            newEvent.event_no = event_number;
+            string loc = txt_location.Text.Trim();
+            newEvent.location = loc.ToString();
             newEvent.latitude = latitude.Text.ToString();
             newEvent.longitude = longitude.Text.ToString();
             newEvent.address = Address.Text.Trim();
@@ -27,7 +31,7 @@ namespace college_event
             {
                 db.set_event_locations.InsertOnSubmit(newEvent);
                 db.SubmitChanges();
-                Response.Redirect("CreateEventPage.aspx");
+                Response.Redirect($"CreateEventPage.aspx?Location={event_number}:{loc}");
             }
             catch (Exception ex)
             {

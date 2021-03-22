@@ -11,6 +11,47 @@ namespace college_event
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            try
+            {
+                if (string.IsNullOrEmpty((string)Session["status"]))
+                {
+                    login.Visible = true;     // User Login button
+                    register.Visible = true;     // User Sign-up button
+
+                    logout.Visible = false;       // Logout button
+                    greetings.Visible = false;      // Hello User button     
+
+                }
+                else if (Session["status"].Equals("1"))    // User
+                {
+                    login.Visible = false;     // User Login button
+                    register.Visible = false;     // User Sign-up button
+
+                    logout.Visible = true;       // Logout button
+                    greetings.Text = "Hello " + Session["fullname"].ToString();      // Hello User button 
+                    
+                }
+                else if (Session["status"].Equals("2")) // User is Admin
+                {
+                    login.Visible = false;     // User Login button
+                    register.Visible = false;     // User Sign-up button
+
+                    logout.Visible = true;       // Logout button
+                    greetings.Text = "Hello " + Session["fullname"].ToString();      // Hello Admin button
+                }
+                else if (Session["status"].Equals("3")) // User is Super-Admin
+                {
+                    login.Visible = false;     // User Login button
+                    register.Visible = false;     // User Sign-up button
+
+                    logout.Visible = true;       // Logout button
+                    greetings.Text = "Hello " + Session["fullname"].ToString();      // Hello Admin button
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('" + ex.Message + "');</script>");
+            }
 
         }
 

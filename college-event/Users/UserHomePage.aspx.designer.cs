@@ -7,38 +7,38 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace college_event
+namespace college_event.Users
 {
 
 
-    public partial class home
+    public partial class UserHomePage
     {
 
         /// <summary>
-        /// LinkButton1 control.
+        /// GridView_UniversityEvents control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
+        protected global::System.Web.UI.WebControls.GridView GridView_UniversityEvents;
 
         /// <summary>
-        /// LinkButton2 control.
+        /// create_RSO control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton2;
+        protected global::System.Web.UI.WebControls.Button create_RSO;
 
         /// <summary>
-        /// requestToCreateRso control.
+        /// GridView_JoinRSO control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button requestToCreateRso;
+        protected global::System.Web.UI.WebControls.GridView GridView_JoinRSO;
     }
 }

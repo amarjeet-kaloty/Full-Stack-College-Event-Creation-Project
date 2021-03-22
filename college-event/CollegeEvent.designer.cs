@@ -36,6 +36,9 @@ namespace college_event
     partial void Insertuniversity_profile(university_profile instance);
     partial void Updateuniversity_profile(university_profile instance);
     partial void Deleteuniversity_profile(university_profile instance);
+    partial void InsertRSO(RSO instance);
+    partial void UpdateRSO(RSO instance);
+    partial void DeleteRSO(RSO instance);
     partial void Insertset_event_location(set_event_location instance);
     partial void Updateset_event_location(set_event_location instance);
     partial void Deleteset_event_location(set_event_location instance);
@@ -87,6 +90,14 @@ namespace college_event
 			get
 			{
 				return this.GetTable<university_profile>();
+			}
+		}
+		
+		public System.Data.Linq.Table<RSO> RSOs
+		{
+			get
+			{
+				return this.GetTable<RSO>();
 			}
 		}
 		
@@ -399,6 +410,164 @@ namespace college_event
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RSO")]
+	public partial class RSO : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _college_id;
+		
+		private string _organisation_name;
+		
+		private string _group_member;
+		
+		private string _email;
+		
+		private System.Nullable<bool> _group_administrator;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Oncollege_idChanging(int value);
+    partial void Oncollege_idChanged();
+    partial void Onorganisation_nameChanging(string value);
+    partial void Onorganisation_nameChanged();
+    partial void Ongroup_memberChanging(string value);
+    partial void Ongroup_memberChanged();
+    partial void OnemailChanging(string value);
+    partial void OnemailChanged();
+    partial void Ongroup_administratorChanging(System.Nullable<bool> value);
+    partial void Ongroup_administratorChanged();
+    #endregion
+		
+		public RSO()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_college_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int college_id
+		{
+			get
+			{
+				return this._college_id;
+			}
+			set
+			{
+				if ((this._college_id != value))
+				{
+					this.Oncollege_idChanging(value);
+					this.SendPropertyChanging();
+					this._college_id = value;
+					this.SendPropertyChanged("college_id");
+					this.Oncollege_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_organisation_name", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string organisation_name
+		{
+			get
+			{
+				return this._organisation_name;
+			}
+			set
+			{
+				if ((this._organisation_name != value))
+				{
+					this.Onorganisation_nameChanging(value);
+					this.SendPropertyChanging();
+					this._organisation_name = value;
+					this.SendPropertyChanged("organisation_name");
+					this.Onorganisation_nameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_group_member", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string group_member
+		{
+			get
+			{
+				return this._group_member;
+			}
+			set
+			{
+				if ((this._group_member != value))
+				{
+					this.Ongroup_memberChanging(value);
+					this.SendPropertyChanging();
+					this._group_member = value;
+					this.SendPropertyChanged("group_member");
+					this.Ongroup_memberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_email", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string email
+		{
+			get
+			{
+				return this._email;
+			}
+			set
+			{
+				if ((this._email != value))
+				{
+					this.OnemailChanging(value);
+					this.SendPropertyChanging();
+					this._email = value;
+					this.SendPropertyChanged("email");
+					this.OnemailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_group_administrator", DbType="Bit")]
+		public System.Nullable<bool> group_administrator
+		{
+			get
+			{
+				return this._group_administrator;
+			}
+			set
+			{
+				if ((this._group_administrator != value))
+				{
+					this.Ongroup_administratorChanging(value);
+					this.SendPropertyChanging();
+					this._group_administrator = value;
+					this.SendPropertyChanged("group_administrator");
+					this.Ongroup_administratorChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.set_event_location")]
 	public partial class set_event_location : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -413,11 +582,9 @@ namespace college_event
 		
 		private string _longitude;
 		
-		private string _user_id;
-		
-		private string _event_name;
-		
 		private string _address;
+		
+		private EntitySet<Event> _Events;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -431,20 +598,17 @@ namespace college_event
     partial void OnlatitudeChanged();
     partial void OnlongitudeChanging(string value);
     partial void OnlongitudeChanged();
-    partial void Onuser_idChanging(string value);
-    partial void Onuser_idChanged();
-    partial void Onevent_nameChanging(string value);
-    partial void Onevent_nameChanged();
     partial void OnaddressChanging(string value);
     partial void OnaddressChanged();
     #endregion
 		
 		public set_event_location()
 		{
+			this._Events = new EntitySet<Event>(new Action<Event>(this.attach_Events), new Action<Event>(this.detach_Events));
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_event_no", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_event_no", DbType="Int NOT NULL", IsPrimaryKey=true)]
 		public int event_no
 		{
 			get
@@ -524,46 +688,6 @@ namespace college_event
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_user_id", DbType="VarChar(50)")]
-		public string user_id
-		{
-			get
-			{
-				return this._user_id;
-			}
-			set
-			{
-				if ((this._user_id != value))
-				{
-					this.Onuser_idChanging(value);
-					this.SendPropertyChanging();
-					this._user_id = value;
-					this.SendPropertyChanged("user_id");
-					this.Onuser_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_event_name", DbType="VarChar(50)")]
-		public string event_name
-		{
-			get
-			{
-				return this._event_name;
-			}
-			set
-			{
-				if ((this._event_name != value))
-				{
-					this.Onevent_nameChanging(value);
-					this.SendPropertyChanging();
-					this._event_name = value;
-					this.SendPropertyChanged("event_name");
-					this.Onevent_nameChanged();
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_address", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
 		public string address
 		{
@@ -581,6 +705,19 @@ namespace college_event
 					this.SendPropertyChanged("address");
 					this.OnaddressChanged();
 				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="set_event_location_Event", Storage="_Events", ThisKey="event_no", OtherKey="event_no")]
+		public EntitySet<Event> Events
+		{
+			get
+			{
+				return this._Events;
+			}
+			set
+			{
+				this._Events.Assign(value);
 			}
 		}
 		
@@ -603,6 +740,18 @@ namespace college_event
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
+		
+		private void attach_Events(Event entity)
+		{
+			this.SendPropertyChanging();
+			entity.set_event_location = this;
+		}
+		
+		private void detach_Events(Event entity)
+		{
+			this.SendPropertyChanging();
+			entity.set_event_location = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Events")]
@@ -611,15 +760,13 @@ namespace college_event
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _EId;
-		
-		private string _LocID;
+		private int _Eid;
 		
 		private string _eType;
 		
 		private string _eCategory;
 		
-		private string _edescription;
+		private string _eDescription;
 		
 		private System.TimeSpan _start;
 		
@@ -631,20 +778,22 @@ namespace college_event
 		
 		private string _email;
 		
+		private int _event_no;
+		
+		private EntityRef<set_event_location> _set_event_location;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnEIdChanging(int value);
-    partial void OnEIdChanged();
-    partial void OnLocIDChanging(string value);
-    partial void OnLocIDChanged();
+    partial void OnEidChanging(int value);
+    partial void OnEidChanged();
     partial void OneTypeChanging(string value);
     partial void OneTypeChanged();
     partial void OneCategoryChanging(string value);
     partial void OneCategoryChanged();
-    partial void OnedescriptionChanging(string value);
-    partial void OnedescriptionChanged();
+    partial void OneDescriptionChanging(string value);
+    partial void OneDescriptionChanged();
     partial void OnstartChanging(System.TimeSpan value);
     partial void OnstartChanged();
     partial void OnendChanging(System.TimeSpan value);
@@ -655,54 +804,37 @@ namespace college_event
     partial void OncontactChanged();
     partial void OnemailChanging(string value);
     partial void OnemailChanged();
+    partial void Onevent_noChanging(int value);
+    partial void Onevent_noChanged();
     #endregion
 		
 		public Event()
 		{
+			this._set_event_location = default(EntityRef<set_event_location>);
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EId", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int EId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Eid", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Eid
 		{
 			get
 			{
-				return this._EId;
+				return this._Eid;
 			}
 			set
 			{
-				if ((this._EId != value))
+				if ((this._Eid != value))
 				{
-					this.OnEIdChanging(value);
+					this.OnEidChanging(value);
 					this.SendPropertyChanging();
-					this._EId = value;
-					this.SendPropertyChanged("EId");
-					this.OnEIdChanged();
+					this._Eid = value;
+					this.SendPropertyChanged("Eid");
+					this.OnEidChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LocID", DbType="VarChar(30)")]
-		public string LocID
-		{
-			get
-			{
-				return this._LocID;
-			}
-			set
-			{
-				if ((this._LocID != value))
-				{
-					this.OnLocIDChanging(value);
-					this.SendPropertyChanging();
-					this._LocID = value;
-					this.SendPropertyChanged("LocID");
-					this.OnLocIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_eType", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_eType", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
 		public string eType
 		{
 			get
@@ -722,7 +854,7 @@ namespace college_event
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_eCategory", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_eCategory", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
 		public string eCategory
 		{
 			get
@@ -742,22 +874,22 @@ namespace college_event
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_edescription", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string edescription
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_eDescription", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string eDescription
 		{
 			get
 			{
-				return this._edescription;
+				return this._eDescription;
 			}
 			set
 			{
-				if ((this._edescription != value))
+				if ((this._eDescription != value))
 				{
-					this.OnedescriptionChanging(value);
+					this.OneDescriptionChanging(value);
 					this.SendPropertyChanging();
-					this._edescription = value;
-					this.SendPropertyChanged("edescription");
-					this.OnedescriptionChanged();
+					this._eDescription = value;
+					this.SendPropertyChanged("eDescription");
+					this.OneDescriptionChanged();
 				}
 			}
 		}
@@ -842,7 +974,7 @@ namespace college_event
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_email", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_email", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 		public string email
 		{
 			get
@@ -858,6 +990,64 @@ namespace college_event
 					this._email = value;
 					this.SendPropertyChanged("email");
 					this.OnemailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_event_no", DbType="Int NOT NULL")]
+		public int event_no
+		{
+			get
+			{
+				return this._event_no;
+			}
+			set
+			{
+				if ((this._event_no != value))
+				{
+					if (this._set_event_location.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onevent_noChanging(value);
+					this.SendPropertyChanging();
+					this._event_no = value;
+					this.SendPropertyChanged("event_no");
+					this.Onevent_noChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="set_event_location_Event", Storage="_set_event_location", ThisKey="event_no", OtherKey="event_no", IsForeignKey=true)]
+		public set_event_location set_event_location
+		{
+			get
+			{
+				return this._set_event_location.Entity;
+			}
+			set
+			{
+				set_event_location previousValue = this._set_event_location.Entity;
+				if (((previousValue != value) 
+							|| (this._set_event_location.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._set_event_location.Entity = null;
+						previousValue.Events.Remove(this);
+					}
+					this._set_event_location.Entity = value;
+					if ((value != null))
+					{
+						value.Events.Add(this);
+						this._event_no = value.event_no;
+					}
+					else
+					{
+						this._event_no = default(int);
+					}
+					this.SendPropertyChanged("set_event_location");
 				}
 			}
 		}

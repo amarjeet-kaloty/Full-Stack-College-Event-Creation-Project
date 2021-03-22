@@ -33,7 +33,14 @@ namespace college_event
                     Response.Write("<script>alert('Login Successful.');</script>");
                     Session["uid"] = user.uid;
                     Session["status"] = user.status;
-                    Response.Redirect("home.aspx");
+                    if(user.status == 1)
+                    {
+                        Response.Redirect("~/Users/SuperAdminHomePage.aspx");
+                    }
+                    else if(user.status == 3)
+                    {
+                        Response.Redirect("~/Users/UserHomePage.aspx");
+                    }
                 }
                 else
                 {

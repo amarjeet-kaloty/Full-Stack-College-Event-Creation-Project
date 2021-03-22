@@ -11,7 +11,21 @@ namespace college_event
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //try
+            //{
+            //    if (Session["status"].Equals("1"))    // SuperAdmin
+            //    { 
 
+            //    }
+            //    else if (Session["status"].Equals("2")) // User is Admin
+            //    {
+
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Response.Write("<script>alert('" + ex.Message + "');</script>");
+            //}
         }
 
         //Create Event
@@ -24,6 +38,12 @@ namespace college_event
         protected void LinkButton2_Click(object sender, EventArgs e)
         {
             Response.Redirect("CreateUniversityProfile.aspx");
+        }
+
+        // Request To Create Rso
+        protected void requestToCreateRso_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

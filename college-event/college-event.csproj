@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CreateEventPage.aspx" />
+    <Content Include="CreateNewRSO.aspx" />
     <Content Include="CreateUniversityProfile.aspx" />
     <Content Include="Datatable\css\jquery.dataTables.min.css" />
     <Content Include="Datatable\js\jquery.dataTables.min.js" />
@@ -1716,6 +1717,8 @@
     <Content Include="Images\user.png" />
     <Content Include="Login.aspx" />
     <Content Include="Register.aspx" />
+    <Content Include="Users\SuperAdminHomePage.aspx" />
+    <Content Include="Users\UserHomePage.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -1731,6 +1734,13 @@
     </Compile>
     <Compile Include="CreateEventPage.aspx.designer.cs">
       <DependentUpon>CreateEventPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CreateNewRSO.aspx.cs">
+      <DependentUpon>CreateNewRSO.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreateNewRSO.aspx.designer.cs">
+      <DependentUpon>CreateNewRSO.aspx</DependentUpon>
     </Compile>
     <Compile Include="CreateUniversityProfile.aspx.cs">
       <DependentUpon>CreateUniversityProfile.aspx</DependentUpon>
@@ -1774,6 +1784,20 @@
     </Compile>
     <Compile Include="Site1.Master.designer.cs">
       <DependentUpon>Site1.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Users\SuperAdminHomePage.aspx.cs">
+      <DependentUpon>SuperAdminHomePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\SuperAdminHomePage.aspx.designer.cs">
+      <DependentUpon>SuperAdminHomePage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Users\UserHomePage.aspx.cs">
+      <DependentUpon>UserHomePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\UserHomePage.aspx.designer.cs">
+      <DependentUpon>UserHomePage.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

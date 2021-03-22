@@ -47,6 +47,16 @@
                             <div class="col">
                                 <div class="form-group">
                                     <center>
+                                       <asp:Label runat="server" ID="Location" Text="Select Location"></asp:Label>
+                                    </center>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <center>
                                         <label>Event Type</label>
                                         <asp:TextBox runat="server" ID="event_type"></asp:TextBox>
                                     </center>
@@ -85,7 +95,7 @@
                                 <div class="form-group">
                                     <center>
                                         <label>Start Time</label>
-                                        <asp:TextBox runat="server"  ID="start_time" TextMode="Time"></asp:TextBox>
+                                        <asp:TextBox runat="server"  ID="start_time" format="HH:mm"></asp:TextBox>
                                     </center>
                                 </div>
                             </div>
@@ -95,7 +105,7 @@
                                 <div class="form-group">
                                     <center>
                                         <label>End Time</label>
-                                        <asp:TextBox runat="server"  ID="end_time" TextMode="Time"></asp:TextBox>
+                                        <asp:TextBox runat="server"  ID="end_time" format="HH:mm"></asp:TextBox>
                                     </center>
                                 </div>
                             </div>

@@ -44,7 +44,7 @@ namespace college_event
 
         protected void RegisterNewUser()
         {
-            member_master_tbl newUser = new member_master_tbl();
+            var newUser = new member_master_tbl();
 
             if(uid.Text == string.Empty || name.Text == string.Empty || password.Text == string.Empty)
             {

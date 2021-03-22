@@ -8,6 +8,8 @@
     
     <asp:LinkButton ID="LinkButton2" runat="server" OnClick="LinkButton2_Click">Create University Profile</asp:LinkButton>
 
+    <asp:Button ID="requestToCreateRso" runat="server" Text="Request to Create RSO" visible="true" OnClick="requestToCreateRso_Click" />
+
 
 
 </asp:Content>
