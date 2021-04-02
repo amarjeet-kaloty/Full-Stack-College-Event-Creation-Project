@@ -17,7 +17,7 @@ namespace college_event
         }
 
         // Login
-        protected void login_Click(object sender, EventArgs e)
+        protected void login_btn_Click(object sender, EventArgs e)
         {
             var qryUserLogin = (from user in db.member_master_tbls
                                 where user.uid == uid.Text.Trim()
@@ -32,14 +32,15 @@ namespace college_event
                 {
                     Response.Write("<script>alert('Login Successful.');</script>");
                     Session["uid"] = user.uid;
+                    Session["name"] = user.name;
                     Session["status"] = user.status;
                     if(user.status == 1)
                     {
-                        Response.Redirect("~/Users/SuperAdminHomePage.aspx");
+                        Response.Redirect("SuperAdminHome.aspx");
                     }
                     else if(user.status == 3)
                     {
-                        Response.Redirect("~/Users/UserHomePage.aspx");
+                        Response.Redirect("Users/UserHome.aspx");
                     }
                 }
                 else

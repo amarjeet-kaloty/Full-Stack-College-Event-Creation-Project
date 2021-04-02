@@ -54,19 +54,7 @@ namespace college_event
             newUser.uid = uid.Text.Trim();
             newUser.name = name.Text.Trim();
             newUser.password = EnryptString(password.Text.Trim());
-            if (select_user.SelectedValue == "super admin")
-            {
-                newUser.status = 1;
-            }
-            else if(select_user.SelectedValue == "admin")
-            {
-                newUser.status = 2;
-            }
-            else
-            {
-                newUser.status = 3;
-            }
-
+            newUser.status = 3;
             try
             {
                 db.member_master_tbls.InsertOnSubmit(newUser);

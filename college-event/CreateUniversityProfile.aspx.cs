@@ -67,6 +67,10 @@ namespace college_event
                 newUniversity.number_of_students = Convert.ToInt32(number_of_Students.Text);
                 newUniversity.university_img = filepath;
             }
+            // Updating User status to Super-admin after Unversity Profile is created.
+            string uid = Session["Uid"].ToString();
+            member_master_tbl updateUserStatus = db.member_master_tbls.Single(x => x.uid == uid);
+            updateUserStatus.status = 3;
             try 
             {
                 db.university_profiles.InsertOnSubmit(newUniversity);

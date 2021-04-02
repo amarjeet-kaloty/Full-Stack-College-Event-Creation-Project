@@ -7,12 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace college_event.Users
+namespace college_event
 {
 
 
-    public partial class UserHomePage
+    public partial class UserHome
     {
+
+        /// <summary>
+        /// create_university_profile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button create_university_profile;
 
         /// <summary>
         /// GridView_UniversityEvents control.
@@ -33,12 +42,12 @@ namespace college_event.Users
         protected global::System.Web.UI.WebControls.Button create_RSO;
 
         /// <summary>
-        /// GridView_JoinRSO control.
+        /// GridView_RSO control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView_JoinRSO;
+        protected global::System.Web.UI.WebControls.GridView GridView_RSO;
     }
 }

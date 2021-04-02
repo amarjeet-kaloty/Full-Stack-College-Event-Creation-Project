@@ -6,15 +6,18 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace college_event.Users
+namespace college_event
 {
-    public partial class UserHomePage : System.Web.UI.Page
+    public partial class UserHome : System.Web.UI.Page
     {
         CollegeEventDataContext db = new CollegeEventDataContext();
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Load_GridView();
+            if (!IsPostBack)
+            {
+                Load_GridView();
+            }
         }
 
         protected void Load_GridView()
@@ -24,7 +27,7 @@ namespace college_event.Users
 
             string[] parts = email.Split(new[] { '@' });
             string username = parts[0];
-            string domain = "knights.ucf.edu";                      // parts[1];
+            string domain = "knights.ucf.edu"; // parts[1];
 
             // View Events in the University
             DataTable table_view_events = new DataTable();
@@ -56,7 +59,7 @@ namespace college_event.Users
                     y = v.address;
                 }
 
-                    DataRow row = table_view_events.NewRow();
+                DataRow row = table_view_events.NewRow();
                 row[0] = value.eType;
                 row[1] = value.eCategory;
                 row[2] = value.eDescription;
@@ -77,10 +80,7 @@ namespace college_event.Users
             // RSO GridView
             DataTable table_joinRSO = new DataTable();
 
-            table_joinRSO.Columns.Add(new DataColumn("RSO Name", typeof(string)));
-            table_joinRSO.Columns.Add(new DataColumn("Member", typeof(string)));
-            table_joinRSO.Columns.Add(new DataColumn("College ID", typeof(int)));
-            table_joinRSO.Columns.Add(new DataColumn("Email", typeof(string)));
+            table_joinRSO.Columns.Add(new DataColumn("RSO", typeof(string)));
             table_joinRSO.Columns.Add(new DataColumn("Number of Members", typeof(int)));
 
             var qry_RSO = (from temp in db.RSOs
@@ -94,20 +94,82 @@ namespace college_event.Users
 
                 DataRow row = table_joinRSO.NewRow();
                 row[0] = value.organisation_name;
-                row[1] = value.group_member;
-                row[2] = value.college_id;
-                row[3] = value.email;
-                row[4] = qry_count;
+                row[1] = qry_count;
                 table_joinRSO.Rows.Add(row);
             }
-            GridView_JoinRSO.DataSource = table_joinRSO;
-            GridView_JoinRSO.DataBind();
+            GridView_RSO.DataSource = table_joinRSO;
+            GridView_RSO.DataBind();
         }
 
         //
         protected void create_RSO_Click(object sender, EventArgs e)
         {
-            Response.Redirect("CreateEventPage.aspx");
+            Response.Redirect("CreateNewRSO.aspx");
         }
+
+        // Adding new member to RSO
+        protected void Join_Click(object sender, EventArgs e)
+        {
+            GridViewRow clickedRow = ((Button)sender).NamingContainer as GridViewRow;
+            var organisation_name = clickedRow.Cells[1].Text;
+            int num_of_members = Convert.ToInt32(clickedRow.Cells[2].Text);
+
+            var qry_members = (from rso in db.RSOs
+                               where rso.organisation_name == organisation_name
+                               select rso);
+
+            var add_member = new RSO();
+            var rand = new Random();
+            int college_id = rand.Next(100100, 200100);
+            add_member.college_id = college_id;
+            add_member.organisation_name = organisation_name;
+            add_member.group_member = "Test_Futball_5";                                                    // Session["name"].ToString();
+            add_member.email = "fut5@.knights.ucf.edu";                                                   // Session["uid"].ToString();
+            add_member.group_administrator = false;
+            num_of_members++;
+            try
+            {
+                db.RSOs.InsertOnSubmit(add_member);
+                db.SubmitChanges();
+                Response.Write("<script>alert('Member successfully joined the RSO.');</script>");
+            }
+            catch (Exception)
+            {
+                Response.Write("<script>alert('An Error Occured. Please try again.');</script>");
+            }
+
+
+            if (num_of_members == 5) 
+            {
+                AssignAdmin(organisation_name);
+            }
+        }
+
+        protected void AssignAdmin(string org_name)
+        {
+            List<string> members = new List<string>();
+
+            var qry_RSO = (from rso in db.RSOs
+                             where rso.organisation_name == org_name
+                             select rso).ToList();
+
+            foreach(var member in qry_RSO)
+            {
+                members.Add(member.college_id.ToString());
+            }
+
+            var rand = new Random();
+            int random_member = rand.Next(members.Count);
+            string choosen_college_id = members[random_member];
+
+            RSO qry_assignAdmin = db.RSOs.Single(x => x.college_id == Convert.ToInt32(choosen_college_id));
+            qry_assignAdmin.group_administrator = true;
+            db.SubmitChanges();
+            
+
+        }
+
+
+
     }
 }

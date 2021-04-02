@@ -33,12 +33,12 @@ namespace college_event
         protected global::System.Web.UI.WebControls.TextBox password;
 
         /// <summary>
-        /// login control.
+        /// login_btn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button login;
+        protected global::System.Web.UI.WebControls.Button login_btn;
     }
 }

@@ -33,21 +33,6 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-6">
-                                <center>
-                                    <label>Select User</label>
-                                    <div class="form-group">
-                                        <asp:DropDownList class="form-control" ID="select_user" runat="server">
-                                            <asp:ListItem Text="Super Admin" Value="super admin" />
-                                            <asp:ListItem Text="Admin" Value="admin" />
-                                            <asp:ListItem Text="User" Value="user" />
-                                        </asp:DropDownList>
-                                    </div>
-                                </center>
-                            </div>
-                        </div>
-
-                        <div class="row">
                             <div class="col">
                                 <div class="form-group">
                                     <center>

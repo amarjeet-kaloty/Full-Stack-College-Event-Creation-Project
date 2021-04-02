@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace college_event.Users
+namespace college_event
 {
 
 
-    public partial class SuperAdminHomePage
+    public partial class SuperAdminHome
     {
 
         /// <summary>

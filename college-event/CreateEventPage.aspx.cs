@@ -22,7 +22,9 @@ namespace college_event
                 event_id = split_loc[0];
                 loca = split_loc[1];
                 Location.Text = loca;
-            }   
+            }
+
+            // InitializeCategory();
         }
 
         // Set Location
@@ -65,6 +67,11 @@ namespace college_event
             {
                 Console.WriteLine("Error: {0}", ex.ToString());
             }
+        }
+
+        protected void InitializeCategory()
+        {
+            
         }
     }
 }

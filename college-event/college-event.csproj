@@ -1711,14 +1711,14 @@
     <Content Include="Fontawesome\webfonts\fa-solid-900.svg" />
     <Content Include="home.aspx" />
     <Content Include="SetLocation.aspx" />
+    <Content Include="SuperAdminHome.aspx" />
     <Content Include="University_Images\b1.jpg" />
     <Content Include="University_Images\ucf image.jpg" />
     <Content Include="University_Images\university.png" />
     <Content Include="Images\user.png" />
     <Content Include="Login.aspx" />
     <Content Include="Register.aspx" />
-    <Content Include="Users\SuperAdminHomePage.aspx" />
-    <Content Include="Users\UserHomePage.aspx" />
+    <Content Include="UserHome.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -1785,19 +1785,19 @@
     <Compile Include="Site1.Master.designer.cs">
       <DependentUpon>Site1.Master</DependentUpon>
     </Compile>
-    <Compile Include="Users\SuperAdminHomePage.aspx.cs">
-      <DependentUpon>SuperAdminHomePage.aspx</DependentUpon>
+    <Compile Include="SuperAdminHome.aspx.cs">
+      <DependentUpon>SuperAdminHome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Users\SuperAdminHomePage.aspx.designer.cs">
-      <DependentUpon>SuperAdminHomePage.aspx</DependentUpon>
+    <Compile Include="SuperAdminHome.aspx.designer.cs">
+      <DependentUpon>SuperAdminHome.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Users\UserHomePage.aspx.cs">
-      <DependentUpon>UserHomePage.aspx</DependentUpon>
+    <Compile Include="UserHome.aspx.cs">
+      <DependentUpon>UserHome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Users\UserHomePage.aspx.designer.cs">
-      <DependentUpon>UserHomePage.aspx</DependentUpon>
+    <Compile Include="UserHome.aspx.designer.cs">
+      <DependentUpon>UserHome.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

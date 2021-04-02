@@ -2,9 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1>Hello COP_4710 Group</h1>
-    
-    <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click">Create Event</asp:LinkButton>
+    <h1>Welcome to College-events</h1>
     
     <asp:LinkButton ID="LinkButton2" runat="server" OnClick="LinkButton2_Click">Create University Profile</asp:LinkButton>
 

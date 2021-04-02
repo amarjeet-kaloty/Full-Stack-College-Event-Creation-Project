@@ -6,9 +6,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace college_event.Users
+namespace college_event
 {
-    public partial class SuperAdminHomePage : System.Web.UI.Page
+    public partial class SuperAdminHome : System.Web.UI.Page
     {
         CollegeEventDataContext db = new CollegeEventDataContext();
 
@@ -36,8 +36,8 @@ namespace college_event.Users
             foreach (var value in qry_RSO)
             {
                 var qry_count = (from temp1 in db.RSOs
-                                where value.organisation_name == temp1.organisation_name
-                                select temp1).Count();
+                                 where value.organisation_name == temp1.organisation_name
+                                 select temp1).Count();
 
                 DataRow row = table_RSO.NewRow();
                 row[0] = value.organisation_name;
@@ -51,22 +51,5 @@ namespace college_event.Users
             GridView_RSO.DataBind();
 
         }
-
-        //protected void GridView_RSO_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    GridViewRow row = GridView_RSO.SelectedRow;
-        //    // var x = row.Cells[4].Text;
-        //    var y = row.Cells[2].Text;
-
-        //    var qry_count_members = (from mem in db.RSOs
-        //                             where mem.organisation_name == y
-        //                             select mem).Count();
-
-        //    if (qry_count_members == 5)
-        //    {
-        //        Console.WriteLine("Members are full");
-        //    }
-        //}
-
     }
 }
