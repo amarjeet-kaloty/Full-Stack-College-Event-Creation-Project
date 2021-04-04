@@ -1,20 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="college-event" Class="CollegeEventDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-2SK6G70;Initial Catalog=college-event;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="college_eventConnectionString" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="college_event" Class="CollegeEventDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-ENT3N0E\SQLEXPRESS;Initial Catalog=college_event;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="college_eventConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.member_master_tbl" Member="member_master_tbls">
     <Type Name="member_master_tbl">
       <Column Name="uid" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="password" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.university_profile" Member="university_profiles">
-    <Type Name="university_profile">
-      <Column Name="name" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="location" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="description" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="number_of_students" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="university_img" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.RSO" Member="RSOs">
@@ -34,6 +25,15 @@
       <Column Name="longitude" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
       <Column Name="address" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
       <Association Name="set_event_location_Event" Member="Events" ThisKey="event_no" OtherKey="event_no" Type="Event" />
+    </Type>
+  </Table>
+  <Table Name="dbo.university_profile" Member="university_profiles">
+    <Type Name="university_profile">
+      <Column Name="name" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="location" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="number_of_students" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="university_img" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.Events" Member="Events">

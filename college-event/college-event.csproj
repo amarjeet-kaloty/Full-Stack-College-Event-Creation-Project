@@ -1711,6 +1711,7 @@
     <Content Include="Fontawesome\webfonts\fa-solid-900.svg" />
     <Content Include="home.aspx" />
     <Content Include="SetLocation.aspx" />
+    <Content Include="Style.css" />
     <Content Include="SuperAdminHome.aspx" />
     <Content Include="University_Images\b1.jpg" />
     <Content Include="University_Images\ucf image.jpg" />
