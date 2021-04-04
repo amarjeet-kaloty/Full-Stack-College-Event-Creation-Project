@@ -70,7 +70,7 @@
         </div>
     </div>--%>
 
-    <div class="container" style="margin-top: 200px; width:25%; border: 2px solid #40a5a5; border-radius: 5px; padding: 50px; background-color: #7FCDCD">
+    <div class="container" style="margin-top: 80px; width:50%; border:2px solid #40a5a5; border-radius:5px; padding: 40px; background-color: #7FCDCD">
         <div class="row">
             <div class="col">
                 <center>
@@ -79,7 +79,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row" style="margin-top: 20px">
             <div class="col">
                 <center>
                     <h4 style="font-size:30px; align-items:center">Login</h4>
@@ -95,7 +95,7 @@
 
         <div class="row" style="margin-top:20px">
             <div class="col-md-2">
-                <label>Uid</label>
+                <label >Uid</label>
             </div>
             <div class="col-md-10">
                 <div class="form-group">
