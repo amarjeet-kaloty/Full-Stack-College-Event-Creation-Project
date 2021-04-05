@@ -70,8 +70,8 @@
                                     <center>
                                         <label>Category</label>
                                         <asp:DropDownList ID="category" runat="server">
-                                            <asp:ListItem Value="public">Public</asp:ListItem>
-                                            <asp:ListItem Value="private">Private</asp:ListItem>
+                                            <asp:ListItem Value="Public">Public</asp:ListItem>
+                                            <asp:ListItem Value="Private">Private</asp:ListItem>
                                             <asp:ListItem Value="RSO">RSO</asp:ListItem>
                                         </asp:DropDownList>
                                     </center>

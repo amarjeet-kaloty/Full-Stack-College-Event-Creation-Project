@@ -11,9 +11,18 @@ namespace college_event
     public partial class UserHome : System.Web.UI.Page
     {
         CollegeEventDataContext db = new CollegeEventDataContext();
+        string[] parts;
+        string username;
+        string domain;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            int status = Convert.ToInt32(Session["status"]);
+            string email = Convert.ToString(Session["uid"]);
+
+            parts = email.Split(new[] { '@' });
+            username = parts[0];
+            domain = parts[1];
             if (!IsPostBack)
             {
                 Load_GridView();
@@ -22,12 +31,6 @@ namespace college_event
 
         protected void Load_GridView()
         {
-            int status = Convert.ToInt32(Session["status"]);
-            string email = Convert.ToString(Session["uid"]);
-
-            string[] parts = email.Split(new[] { '@' });
-            string username = parts[0];
-            string domain = "knights.ucf.edu"; // parts[1];
 
             // View Events in the University
             DataTable table_view_events = new DataTable();
@@ -44,7 +47,7 @@ namespace college_event
             table_view_events.Columns.Add(new DataColumn("Address", typeof(string)));
 
             var qry_Events = (from temp in db.Events
-                              select temp).Where(x => x.email.Contains(domain)).ToList();
+                              select temp).Where(x => x.email.Contains(domain) && (x.eCategory == "Public" || x.eCategory == "Private")).ToList();
 
             foreach (var value in qry_Events)
             {
@@ -99,6 +102,7 @@ namespace college_event
             }
             GridView_RSO.DataSource = table_joinRSO;
             GridView_RSO.DataBind();
+
         }
 
         //
@@ -123,9 +127,10 @@ namespace college_event
             int college_id = rand.Next(100100, 200100);
             add_member.college_id = college_id;
             add_member.organisation_name = organisation_name;
-            add_member.group_member = "Test_Futball_5";                                                    // Session["name"].ToString();
-            add_member.email = "fut5@.knights.ucf.edu";                                                   // Session["uid"].ToString();
+            add_member.group_member = Session["name"].ToString();
+            add_member.email = Session["uid"].ToString();
             add_member.group_administrator = false;
+            add_member.creator = false;
             num_of_members++;
             try
             {
@@ -169,7 +174,73 @@ namespace college_event
 
         }
 
+        protected void view_events_by_rso_Click(object sender, EventArgs e)
+        {
+            GridView_UniversityEvents.Visible = false;
+            GridView_RSO.Visible = false;
+            label_join_rso.Visible = false;
+
+            // Events if user is a member of the RSO
+            DataTable RSO_member_of = new DataTable();
+
+            RSO_member_of.Columns.Add(new DataColumn("Event", typeof(string)));
+            RSO_member_of.Columns.Add(new DataColumn("Category", typeof(string)));
+            RSO_member_of.Columns.Add(new DataColumn("Description", typeof(string)));
+            RSO_member_of.Columns.Add(new DataColumn("Start", typeof(TimeSpan)));
+            RSO_member_of.Columns.Add(new DataColumn("End", typeof(TimeSpan)));
+            RSO_member_of.Columns.Add(new DataColumn("Date", typeof(string)));
+            RSO_member_of.Columns.Add(new DataColumn("Contact", typeof(string)));
+            RSO_member_of.Columns.Add(new DataColumn("Email", typeof(string)));
+            RSO_member_of.Columns.Add(new DataColumn("Location", typeof(string)));
+            RSO_member_of.Columns.Add(new DataColumn("Address", typeof(string)));
 
 
+            var qry_RSO_user_follows = (from temp in db.RSOs
+                                        where temp.email == Session["uid"].ToString() && temp.creator == false
+                                        select temp.organisation_name).ToList();
+
+            foreach (var value in qry_RSO_user_follows)
+            {
+                var qry_RSO_for_creator = (from temp in db.RSOs
+                                           where value == temp.organisation_name && temp.creator == true
+                                           select temp.email).ToList();
+
+                foreach (var value2 in qry_RSO_for_creator)
+                {
+                    var qry_Event = (from temp in db.Events
+                                     where value2 == temp.email && temp.eCategory == "RSO"
+                                     select temp).ToList();
+                    foreach (var value3 in qry_Event)
+                    {
+                        string x = "";
+                        string y = "";
+                        var qry_event_no = (from eNum in db.set_event_locations
+                                            where eNum.event_no == value3.event_no
+                                            select eNum).ToList();
+                        foreach (var v in qry_event_no)
+                        {
+                            x = v.location;
+                            y = v.address;
+                        }
+                        DataRow row = RSO_member_of.NewRow();
+                        row[0] = value3.eType;
+                        row[1] = value3.eCategory;
+                        row[2] = value3.eDescription;
+                        row[3] = value3.start;
+                        row[4] = value3.end;
+                        string dt = value3.date.ToString();
+                        string[] split_date = dt.Split(' ');
+                        row[5] = split_date[0];
+                        row[6] = value3.contact;
+                        row[7] = value3.email;
+                        row[8] = x;
+                        row[9] = y;
+                        RSO_member_of.Rows.Add(row);
+                    }
+                }
+            }
+            GridView_RSO_user_follows.DataSource = RSO_member_of;
+            GridView_RSO_user_follows.DataBind();
+        }
     }
 }

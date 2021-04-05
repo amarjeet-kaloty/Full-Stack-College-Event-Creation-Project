@@ -15,6 +15,24 @@ namespace college_event
     {
 
         /// <summary>
+        /// create_RSO control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button create_RSO;
+
+        /// <summary>
+        /// view_events_by_rso control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button view_events_by_rso;
+
+        /// <summary>
         /// create_university_profile control.
         /// </summary>
         /// <remarks>
@@ -33,13 +51,13 @@ namespace college_event
         protected global::System.Web.UI.WebControls.GridView GridView_UniversityEvents;
 
         /// <summary>
-        /// create_RSO control.
+        /// label_join_rso control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button create_RSO;
+        protected global::System.Web.UI.WebControls.Label label_join_rso;
 
         /// <summary>
         /// GridView_RSO control.
@@ -49,5 +67,14 @@ namespace college_event
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridView_RSO;
+
+        /// <summary>
+        /// GridView_RSO_user_follows control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridView_RSO_user_follows;
     }
 }

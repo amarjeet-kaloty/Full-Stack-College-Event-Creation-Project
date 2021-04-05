@@ -40,7 +40,7 @@ namespace college_event
                     }
                     else if(user.status == 3)
                     {
-                        Response.Redirect("Users/UserHome.aspx");
+                        Response.Redirect("UserHome.aspx");
                     }
                 }
                 else

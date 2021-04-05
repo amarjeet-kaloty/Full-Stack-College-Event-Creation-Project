@@ -25,6 +25,7 @@ namespace college_event
             createRSO.group_member = name.Text.ToString();
             createRSO.email = email.Text.ToString();
             createRSO.group_administrator = false;
+            createRSO.creator = true;
             try
             {
                 db.RSOs.InsertOnSubmit(createRSO);
