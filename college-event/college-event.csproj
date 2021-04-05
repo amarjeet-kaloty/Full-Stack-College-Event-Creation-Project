@@ -1713,6 +1713,7 @@
     <Content Include="Images\star-empty-lg.png" />
     <Content Include="Images\star-fill-lg.png" />
     <Content Include="SetLocation.aspx" />
+    <Content Include="Style.css" />
     <Content Include="SuperAdminHome.aspx" />
     <Content Include="University_Images\b1.jpg" />
     <Content Include="University_Images\ucf image.jpg" />
