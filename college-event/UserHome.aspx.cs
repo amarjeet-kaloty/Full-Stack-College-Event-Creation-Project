@@ -22,7 +22,7 @@ namespace college_event
 
             parts = email.Split(new[] { '@' });
             username = parts[0];
-            domain = parts[1];
+            domain = "knights.ucf.edu";                        // parts[1];
             if (!IsPostBack)
             {
                 Load_GridView();
@@ -102,6 +102,7 @@ namespace college_event
             }
             GridView_RSO.DataSource = table_joinRSO;
             GridView_RSO.DataBind();
+
 
         }
 

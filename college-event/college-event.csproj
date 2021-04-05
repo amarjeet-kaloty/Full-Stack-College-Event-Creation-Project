@@ -1710,6 +1710,8 @@
     <Content Include="Fontawesome\webfonts\fa-regular-400.svg" />
     <Content Include="Fontawesome\webfonts\fa-solid-900.svg" />
     <Content Include="home.aspx" />
+    <Content Include="Images\star-empty-lg.png" />
+    <Content Include="Images\star-fill-lg.png" />
     <Content Include="SetLocation.aspx" />
     <Content Include="SuperAdminHome.aspx" />
     <Content Include="University_Images\b1.jpg" />
@@ -1722,7 +1724,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\createEvent.cs" />
+    <Compile Include="Classes\Comments.cs" />
     <Compile Include="CollegeEvent.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
-    <script async
+    <%--<script async
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdfWceQkuQGuFQjZk8mjWMjb6HgtAAvs8&callback=initialize">
     </script>
     <script>  
@@ -20,11 +20,77 @@
             diag = new google.maps.Map(document.getElementById('map_populate'), diagChoice);
         }
         google.maps.event.addDomListener(window, 'load', initialize);
-    </script>
-
+    </script>--%>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <%-- <script src="Scripts/jquery-1.7.1.js"></script>
+    <script language="javascript" type="text/javascript">
+        $(document).ready(function () {
+            $(".rating-star-block .star").mouseleave(function () {
+                $("#" + $(this).parent().attr('id') + " .star").each(function () {
+                    $(this).addClass("outline");
+                    $(this).removeClass("filled");
+                });
+            });
+            $(".rating-star-block .star").mouseenter(function () {
+                var hoverVal = $(this).attr('rating');
+                $(this).prevUntil().addClass("filled");
+                $(this).addClass("filled");
+                $("#RAT").html(hoverVal);
+            });
+            //$(".rating-star-block .star").click(function () {
+
+            //    var v = $(this).attr('rating');
+            //    var newScore = 0;
+            //    var updateP = "#" + $(this).parent().attr('id') + ' .CurrentScore';
+            //    var artID = $("#" + $(this).parent().attr('id') + ' .articleID').val();
+
+            //    $("#" + $(this).parent().attr('id') + " .star").hide();
+            //    $("#" + $(this).parent().attr('id') + " .yourScore").html("Your Score is : &nbsp;<b style='color:#ff9900; font-size:15px'>" + v + "</b>");
+            //    $.ajax({
+            //        type: "POST",
+            //        url: "Default.aspx/SaveRating",
+            //        data: "{articleID: '" + artID + "',rate: '" + v + "'}",
+            //        contentType: "application/json; charset=utf-8",
+            //        dataType: "json",
+            //        success: function (data) {
+            //            setNewScore(updateP, data.d);
+            //        },
+            //        error: function (data) {
+            //            alert(data.d);
+            //        }
+            //    });
+            //});
+        });
+        //function setNewScore(container, data) {
+        //    $(container).html(data);
+        //    $("#myElem").show('1000').delay(2000).queue(function (n) {
+        //        $(this).hide(); n();
+        //    });
+        //}
+    </script>--%>
+    <style type="text/css">
+        /*.rating-star-block .star.outline {
+            background: url("Images/star-empty-lg.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+        }*/
+        /*.rating-star-block .star.filled {
+            background: url("Images/star-fill-lg.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+        }*/
+        .rating-star-block .star {
+            color:#ff0000;
+            display : inline-block;
+            height:24px;
+            overflow:hidden;
+            text-indent:-999em;
+            width:24px;
+        }
+        /*a {
+            color: #ff0000;
+            text-decoration: none;
+        }*/
+    </style>
+
 
     <div class="container">
         <div class="row">
@@ -34,7 +100,7 @@
                     <h2>Events Summary</h2>
                 </div>
 
-                <div  class="col-md-3">
+                <div class="col-md-3">
                     <asp:Button ID="create_RSO" CssClass="btn btn-info" runat="server" Text="Create RSO" OnClick="create_RSO_Click" />
                 </div>
 
@@ -50,11 +116,10 @@
 
             <div class="row">
                 <div class="col">
-                    <asp:GridView ID="GridView_UniversityEvents" class="table table-striped table-bordered" EmptyDataText="No Data Found" 
+                    <asp:GridView ID="GridView_UniversityEvents" class="table table-striped table-bordered" EmptyDataText="No Data Found"
                         ShowHeaderWhenEmpty="True" AutoGenerateColumns="False" runat="server">
                         <alternatingrowstyle backcolor="#F7F7F7" />
-                        <headerstyle backcolor="#383838" borderstyle="Solid" font-bold="True" font-size="Larger" forecolor="White" horizontalalign="Center" />
-                        <rowstyle borderstyle="Solid" verticalalign="Middle" horizontalalign="Center" />
+                        <headerstyle backcolor="#383838" />
                         <columns>
                              <asp:TemplateField>
                                  <ItemTemplate>
@@ -112,6 +177,18 @@
                                                         </div>
                                                     </div>
 
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="rating-star-block" id="rating">
+                                                                <a class="fa fa-star-o" href="#" title="vote 1"></a>
+                                                                <a class="fa fa-star-o" href="#" title="vote 2"></a>
+                                                                <a class="fa fa-star-o" href="#" title="vote 3"></a>
+                                                                <a class="fa fa-star-o" href="#" title="vote 4"></a>
+                                                                <a class="fa fa-star-o" href="#" title="vote 5"></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -122,21 +199,6 @@
                     </asp:GridView>
                 </div>
             </div>
-
-            <%--<div class="col-md-12">
-                <div class="row">
-                    <div>
-                        <h3>User University Events</h3>
-                    </div>
-                    <asp:GridView ID="GridView_UniversityEvents" runat="server" GridLines="Both" BorderStyle="Solid" BorderWidth="3px" CellPadding="15"
-                        CssClass="table-bordered" EmptyDataText="No Data Found" ShowHeaderWhenEmpty="True" Font-Size="Medium"
-                        ForeColor="Black" HorizontalAlign="Left" Font-Bold="True">
-                        <alternatingrowstyle backcolor="#F7F7F7" />
-                        <headerstyle backcolor="#383838" borderstyle="Solid" font-bold="True" font-size="Larger" forecolor="White" horizontalalign="Center" />
-                        <rowstyle borderstyle="Solid" verticalalign="Middle" horizontalalign="Center" />
-                    </asp:GridView>
-                </div>
-            </div>--%>
 
             <div class="col-md-6">
                 <div class="row" style="margin-top: 20px">
@@ -160,28 +222,12 @@
                 </div>
             </div>
 
-            <%--   <div class="col-md-12">
-                <div class="row" style="margin-top: 20px">
-                    <div>
-                        <h3>View Events from your RSO</h3>
-                    </div>
-                    <asp:GridView ID="GridView_RSO_user_follows" runat="server" GridLines="Both" BorderStyle="Solid" BorderWidth="3px" CellPadding="15"
-                        CssClass="table-bordered" EmptyDataText="No Data Found" ShowHeaderWhenEmpty="False" Font-Size="Medium"
-                        ForeColor="Black" HorizontalAlign="Left" Font-Bold="True">
-                        <alternatingrowstyle backcolor="#F7F7F7" />
-                        <headerstyle backcolor="#383838" borderstyle="Solid" font-bold="True" font-size="Larger" forecolor="White" horizontalalign="Center" />
-                        <rowstyle borderstyle="Solid" verticalalign="Middle" horizontalalign="Center" />
-                    </asp:GridView>
-                </div>
-            </div>--%>
-
             <div class="row">
                 <div class="col">
-                    <asp:GridView ID="GridView_RSO_user_follows" class="table table-striped table-bordered" EmptyDataText="No Data Found" 
+                    <asp:GridView ID="GridView_RSO_user_follows" class="table table-striped table-bordered" EmptyDataText="No Data Found"
                         ShowHeaderWhenEmpty="True" AutoGenerateColumns="False" runat="server">
                         <alternatingrowstyle backcolor="#F7F7F7" />
-                        <headerstyle backcolor="#383838" borderstyle="Solid" font-bold="True" font-size="Larger" forecolor="White" horizontalalign="Center" />
-                        <rowstyle borderstyle="Solid" verticalalign="Middle" horizontalalign="Center" />
+                        <headerstyle backcolor="#383838" />
                         <columns>
                              <asp:TemplateField>
                                  <ItemTemplate>
@@ -255,3 +301,34 @@
     </div>
 
 </asp:Content>
+
+
+<%--   <div class="col-md-12">
+                <div class="row" style="margin-top: 20px">
+                    <div>
+                        <h3>View Events from your RSO</h3>
+                    </div>
+                    <asp:GridView ID="GridView_RSO_user_follows" runat="server" GridLines="Both" BorderStyle="Solid" BorderWidth="3px" CellPadding="15"
+                        CssClass="table-bordered" EmptyDataText="No Data Found" ShowHeaderWhenEmpty="False" Font-Size="Medium"
+                        ForeColor="Black" HorizontalAlign="Left" Font-Bold="True">
+                        <alternatingrowstyle backcolor="#F7F7F7" />
+                        <headerstyle backcolor="#383838" borderstyle="Solid" font-bold="True" font-size="Larger" forecolor="White" horizontalalign="Center" />
+                        <rowstyle borderstyle="Solid" verticalalign="Middle" horizontalalign="Center" />
+                    </asp:GridView>
+                </div>
+            </div>--%>
+
+<%--<div class="col-md-12">
+                <div class="row">
+                    <div>
+                        <h3>User University Events</h3>
+                    </div>
+                    <asp:GridView ID="GridView_UniversityEvents" runat="server" GridLines="Both" BorderStyle="Solid" BorderWidth="3px" CellPadding="15"
+                        CssClass="table-bordered" EmptyDataText="No Data Found" ShowHeaderWhenEmpty="True" Font-Size="Medium"
+                        ForeColor="Black" HorizontalAlign="Left" Font-Bold="True">
+                        <alternatingrowstyle backcolor="#F7F7F7" />
+                        <headerstyle backcolor="#383838" borderstyle="Solid" font-bold="True" font-size="Larger" forecolor="White" horizontalalign="Center" />
+                        <rowstyle borderstyle="Solid" verticalalign="Middle" horizontalalign="Center" />
+                    </asp:GridView>
+                </div>
+            </div>--%>
