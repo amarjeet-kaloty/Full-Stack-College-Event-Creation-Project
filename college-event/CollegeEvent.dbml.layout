@@ -1,48 +1,48 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="CollegeEvent">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12.625, 8.5" name="CollegeEvent">
   <DataContextMoniker Name="/CollegeEventDataContext" />
   <nestedChildShapes>
-    <classShape Id="24896009-d4ac-4b4d-ad74-946214c0f64c" absoluteBounds="3.5, 1, 2, 2.7324039713541666">
+    <classShape Id="3f5a249e-def0-43ff-aca7-ea2b935605b2" absoluteBounds="0.75, 4.75, 2, 1.9631982421875005">
+      <DataClassMoniker Name="/CollegeEventDataContext/Comment" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3e31befa-1f86-4528-8e2c-ebc2ebf86018" absoluteBounds="0.765, 5.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1ea05299-1d03-4ece-baab-fc5f68a673da" absoluteBounds="3.5, 1, 2, 2.7324039713541666">
       <DataClassMoniker Name="/CollegeEventDataContext/Event" />
       <nestedChildShapes>
-        <elementListCompartment Id="125d2ed7-3e86-4d05-941f-58f95837c93f" absoluteBounds="3.515, 1.46, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="ffaaed78-9b0b-4ac8-8233-9fbebac69495" absoluteBounds="3.515, 1.46, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="d013d925-41da-416f-b1ce-6b0da48c1748" absoluteBounds="0.75, 3.875, 2, 1.5785953776041666">
+    <classShape Id="02793121-d449-4eb4-9612-8dc5a0a1f977" absoluteBounds="3.75, 4.75, 2, 1.5785953776041666">
       <DataClassMoniker Name="/CollegeEventDataContext/member_master_tbl" />
       <nestedChildShapes>
-        <elementListCompartment Id="e0b0d246-91f6-4202-9678-b59ca0015935" absoluteBounds="0.765, 4.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="f6fb279b-bf11-481d-99a2-664538c31194" absoluteBounds="3.765, 5.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="f9bb43d6-0d98-448b-8586-568169ba9938" absoluteBounds="0.75, 1.5, 2, 1.7708968098958333">
+    <classShape Id="922d4755-316d-45ed-8900-b9c55f740a95" absoluteBounds="0.75, 1.5, 2, 1.7708968098958333">
       <DataClassMoniker Name="/CollegeEventDataContext/set_event_location" />
       <nestedChildShapes>
-        <elementListCompartment Id="6eb24228-1e18-4074-aa4b-2ddff55144ef" absoluteBounds="0.765, 1.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="ab42d80f-fb43-43ae-b7c5-c17c1e9a506c" absoluteBounds="0.765, 1.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a06fcac5-b1c3-442b-bbf2-0c65018ac40e" absoluteBounds="6.75, 3.75, 2, 1.7708968098958327">
+      <DataClassMoniker Name="/CollegeEventDataContext/university_profile" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bd37196c-fb96-448c-b702-b8131a37f514" absoluteBounds="6.765, 4.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <associationConnector edgePoints="[(2.75 : 2.38544840494792); (3.5 : 2.38544840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/CollegeEventDataContext/set_event_location/set_event_location_Event" />
       <nodes>
-        <classShapeMoniker Id="f9bb43d6-0d98-448b-8586-568169ba9938" />
-        <classShapeMoniker Id="24896009-d4ac-4b4d-ad74-946214c0f64c" />
+        <classShapeMoniker Id="922d4755-316d-45ed-8900-b9c55f740a95" />
+        <classShapeMoniker Id="1ea05299-1d03-4ece-baab-fc5f68a673da" />
       </nodes>
     </associationConnector>
-    <classShape Id="f674ef69-4e8f-4633-90fa-2d5a10485d0b" absoluteBounds="6.125, 1.25, 2, 1.7708968098958331">
-      <DataClassMoniker Name="/CollegeEventDataContext/university_profile" />
-      <nestedChildShapes>
-        <elementListCompartment Id="cdb7896d-fde2-4f82-8783-f69833dca04a" absoluteBounds="6.14, 1.71, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="8a92b371-637f-463d-a597-83899bf16365" absoluteBounds="3.5, 4, 2, 1.9631982421875">
+    <classShape Id="9ca8779a-019d-4f62-9652-87012d72f69d" absoluteBounds="10.375, 2, 2, 1.9631982421875">
       <DataClassMoniker Name="/CollegeEventDataContext/RSO" />
       <nestedChildShapes>
-        <elementListCompartment Id="2d27b9c8-6ff9-4ed3-bcf9-1f5c8cee73e7" absoluteBounds="3.5149999999999997, 4.46, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="f3b44442-e8e0-4229-ad01-60a7e4adad0b" absoluteBounds="6.125, 3.625, 2, 1.9631982421875">
-      <DataClassMoniker Name="/CollegeEventDataContext/Comment" />
-      <nestedChildShapes>
-        <elementListCompartment Id="ae7a1a02-1e14-4973-825b-7ddbbfe50b95" absoluteBounds="6.14, 4.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="0d8b3d32-dd0e-4e39-b49e-687faef2745d" absoluteBounds="10.39, 2.46, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>
