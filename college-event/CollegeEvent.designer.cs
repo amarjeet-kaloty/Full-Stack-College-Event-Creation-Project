@@ -42,13 +42,16 @@ namespace college_event
     partial void Insertuniversity_profile(university_profile instance);
     partial void Updateuniversity_profile(university_profile instance);
     partial void Deleteuniversity_profile(university_profile instance);
-    partial void InsertEvent(Event instance);
-    partial void UpdateEvent(Event instance);
-    partial void DeleteEvent(Event instance);
+    partial void InsertRSO(RSO instance);
+    partial void UpdateRSO(RSO instance);
+    partial void DeleteRSO(RSO instance);
+    partial void InsertComment(Comment instance);
+    partial void UpdateComment(Comment instance);
+    partial void DeleteComment(Comment instance);
     #endregion
 		
 		public CollegeEventDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["college_eventConnectionString1"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["college_eventConnectionString"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -89,14 +92,6 @@ namespace college_event
 		{
 			get
 			{
-				return this.GetTable<Event>();
-			}
-		}
-		
-		public System.Data.Linq.Table<member_master_tbl> member_master_tbls
-		{
-			get
-			{
 				return this.GetTable<member_master_tbl>();
 			}
 		}
@@ -116,323 +111,12 @@ namespace college_event
 				return this.GetTable<university_profile>();
 			}
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Events")]
-	public partial class Event : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Eid;
-		
-		private string _eType;
-		
-		private string _eCategory;
-		
-		private string _eDescription;
-		
-		private System.TimeSpan _start;
-		
-		private System.TimeSpan _end;
-		
-		private System.DateTime _date;
-		
-		private string _contact;
-		
-		private string _email;
-		
-		private int _event_no;
-		
-		private EntityRef<set_event_location> _set_event_location;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnEidChanging(int value);
-    partial void OnEidChanged();
-    partial void OneTypeChanging(string value);
-    partial void OneTypeChanged();
-    partial void OneCategoryChanging(string value);
-    partial void OneCategoryChanged();
-    partial void OneDescriptionChanging(string value);
-    partial void OneDescriptionChanged();
-    partial void OnstartChanging(System.TimeSpan value);
-    partial void OnstartChanged();
-    partial void OnendChanging(System.TimeSpan value);
-    partial void OnendChanged();
-    partial void OndateChanging(System.DateTime value);
-    partial void OndateChanged();
-    partial void OncontactChanging(string value);
-    partial void OncontactChanged();
-    partial void OnemailChanging(string value);
-    partial void OnemailChanged();
-    partial void Onevent_noChanging(int value);
-    partial void Onevent_noChanged();
-    #endregion
-		
-		public Event()
-		{
-			this._set_event_location = default(EntityRef<set_event_location>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Eid", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Eid
+		public System.Data.Linq.Table<RSO> RSOs
 		{
 			get
 			{
-				return this._Eid;
-			}
-			set
-			{
-				if ((this._Eid != value))
-				{
-					this.OnEidChanging(value);
-					this.SendPropertyChanging();
-					this._Eid = value;
-					this.SendPropertyChanged("Eid");
-					this.OnEidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_eType", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
-		public string eType
-		{
-			get
-			{
-				return this._eType;
-			}
-			set
-			{
-				if ((this._eType != value))
-				{
-					this.OneTypeChanging(value);
-					this.SendPropertyChanging();
-					this._eType = value;
-					this.SendPropertyChanged("eType");
-					this.OneTypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_eCategory", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
-		public string eCategory
-		{
-			get
-			{
-				return this._eCategory;
-			}
-			set
-			{
-				if ((this._eCategory != value))
-				{
-					this.OneCategoryChanging(value);
-					this.SendPropertyChanging();
-					this._eCategory = value;
-					this.SendPropertyChanged("eCategory");
-					this.OneCategoryChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_eDescription", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string eDescription
-		{
-			get
-			{
-				return this._eDescription;
-			}
-			set
-			{
-				if ((this._eDescription != value))
-				{
-					this.OneDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._eDescription = value;
-					this.SendPropertyChanged("eDescription");
-					this.OneDescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_start", DbType="Time NOT NULL")]
-		public System.TimeSpan start
-		{
-			get
-			{
-				return this._start;
-			}
-			set
-			{
-				if ((this._start != value))
-				{
-					this.OnstartChanging(value);
-					this.SendPropertyChanging();
-					this._start = value;
-					this.SendPropertyChanged("start");
-					this.OnstartChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[end]", Storage="_end", DbType="Time NOT NULL")]
-		public System.TimeSpan end
-		{
-			get
-			{
-				return this._end;
-			}
-			set
-			{
-				if ((this._end != value))
-				{
-					this.OnendChanging(value);
-					this.SendPropertyChanging();
-					this._end = value;
-					this.SendPropertyChanged("end");
-					this.OnendChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_date", DbType="Date NOT NULL")]
-		public System.DateTime date
-		{
-			get
-			{
-				return this._date;
-			}
-			set
-			{
-				if ((this._date != value))
-				{
-					this.OndateChanging(value);
-					this.SendPropertyChanging();
-					this._date = value;
-					this.SendPropertyChanged("date");
-					this.OndateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_contact", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
-		public string contact
-		{
-			get
-			{
-				return this._contact;
-			}
-			set
-			{
-				if ((this._contact != value))
-				{
-					this.OncontactChanging(value);
-					this.SendPropertyChanging();
-					this._contact = value;
-					this.SendPropertyChanged("contact");
-					this.OncontactChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_email", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string email
-		{
-			get
-			{
-				return this._email;
-			}
-			set
-			{
-				if ((this._email != value))
-				{
-					this.OnemailChanging(value);
-					this.SendPropertyChanging();
-					this._email = value;
-					this.SendPropertyChanged("email");
-					this.OnemailChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_event_no", DbType="Int NOT NULL")]
-		public int event_no
-		{
-			get
-			{
-				return this._event_no;
-			}
-			set
-			{
-				if ((this._event_no != value))
-				{
-					if (this._set_event_location.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onevent_noChanging(value);
-					this.SendPropertyChanging();
-					this._event_no = value;
-					this.SendPropertyChanged("event_no");
-					this.Onevent_noChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="set_event_location_Event", Storage="_set_event_location", ThisKey="event_no", OtherKey="event_no", IsForeignKey=true)]
-		public set_event_location set_event_location
-		{
-			get
-			{
-				return this._set_event_location.Entity;
-			}
-			set
-			{
-				set_event_location previousValue = this._set_event_location.Entity;
-				if (((previousValue != value) 
-							|| (this._set_event_location.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._set_event_location.Entity = null;
-						previousValue.Events.Remove(this);
-					}
-					this._set_event_location.Entity = value;
-					if ((value != null))
-					{
-						value.Events.Add(this);
-						this._event_no = value.event_no;
-					}
-					else
-					{
-						this._event_no = default(int);
-					}
-					this.SendPropertyChanged("set_event_location");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+				return this.GetTable<RSO>();
 			}
 		}
 		
@@ -1217,6 +901,370 @@ namespace college_event
 					this._university_img = value;
 					this.SendPropertyChanged("university_img");
 					this.Onuniversity_imgChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RSO")]
+	public partial class RSO : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _college_id;
+		
+		private string _organisation_name;
+		
+		private string _group_member;
+		
+		private string _email;
+		
+		private System.Nullable<bool> _group_administrator;
+		
+		private bool _creator;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Oncollege_idChanging(int value);
+    partial void Oncollege_idChanged();
+    partial void Onorganisation_nameChanging(string value);
+    partial void Onorganisation_nameChanged();
+    partial void Ongroup_memberChanging(string value);
+    partial void Ongroup_memberChanged();
+    partial void OnemailChanging(string value);
+    partial void OnemailChanged();
+    partial void Ongroup_administratorChanging(System.Nullable<bool> value);
+    partial void Ongroup_administratorChanged();
+    partial void OncreatorChanging(bool value);
+    partial void OncreatorChanged();
+    #endregion
+		
+		public RSO()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_college_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int college_id
+		{
+			get
+			{
+				return this._college_id;
+			}
+			set
+			{
+				if ((this._college_id != value))
+				{
+					this.Oncollege_idChanging(value);
+					this.SendPropertyChanging();
+					this._college_id = value;
+					this.SendPropertyChanged("college_id");
+					this.Oncollege_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_organisation_name", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string organisation_name
+		{
+			get
+			{
+				return this._organisation_name;
+			}
+			set
+			{
+				if ((this._organisation_name != value))
+				{
+					this.Onorganisation_nameChanging(value);
+					this.SendPropertyChanging();
+					this._organisation_name = value;
+					this.SendPropertyChanged("organisation_name");
+					this.Onorganisation_nameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_group_member", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string group_member
+		{
+			get
+			{
+				return this._group_member;
+			}
+			set
+			{
+				if ((this._group_member != value))
+				{
+					this.Ongroup_memberChanging(value);
+					this.SendPropertyChanging();
+					this._group_member = value;
+					this.SendPropertyChanged("group_member");
+					this.Ongroup_memberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_email", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string email
+		{
+			get
+			{
+				return this._email;
+			}
+			set
+			{
+				if ((this._email != value))
+				{
+					this.OnemailChanging(value);
+					this.SendPropertyChanging();
+					this._email = value;
+					this.SendPropertyChanged("email");
+					this.OnemailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_group_administrator", DbType="Bit")]
+		public System.Nullable<bool> group_administrator
+		{
+			get
+			{
+				return this._group_administrator;
+			}
+			set
+			{
+				if ((this._group_administrator != value))
+				{
+					this.Ongroup_administratorChanging(value);
+					this.SendPropertyChanging();
+					this._group_administrator = value;
+					this.SendPropertyChanged("group_administrator");
+					this.Ongroup_administratorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_creator", DbType="Bit NOT NULL")]
+		public bool creator
+		{
+			get
+			{
+				return this._creator;
+			}
+			set
+			{
+				if ((this._creator != value))
+				{
+					this.OncreatorChanging(value);
+					this.SendPropertyChanging();
+					this._creator = value;
+					this.SendPropertyChanged("creator");
+					this.OncreatorChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Comments")]
+	public partial class Comment : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Score_id;
+		
+		private string _uid;
+		
+		private int _score;
+		
+		private System.DateTime _timestamp;
+		
+		private string _text;
+		
+		private int _event_id;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnScore_idChanging(int value);
+    partial void OnScore_idChanged();
+    partial void OnuidChanging(string value);
+    partial void OnuidChanged();
+    partial void OnscoreChanging(int value);
+    partial void OnscoreChanged();
+    partial void OntimestampChanging(System.DateTime value);
+    partial void OntimestampChanged();
+    partial void OntextChanging(string value);
+    partial void OntextChanged();
+    partial void Onevent_idChanging(int value);
+    partial void Onevent_idChanged();
+    #endregion
+		
+		public Comment()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Score_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Score_id
+		{
+			get
+			{
+				return this._Score_id;
+			}
+			set
+			{
+				if ((this._Score_id != value))
+				{
+					this.OnScore_idChanging(value);
+					this.SendPropertyChanging();
+					this._Score_id = value;
+					this.SendPropertyChanged("Score_id");
+					this.OnScore_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_uid", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
+		public string uid
+		{
+			get
+			{
+				return this._uid;
+			}
+			set
+			{
+				if ((this._uid != value))
+				{
+					this.OnuidChanging(value);
+					this.SendPropertyChanging();
+					this._uid = value;
+					this.SendPropertyChanged("uid");
+					this.OnuidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_score", DbType="Int NOT NULL")]
+		public int score
+		{
+			get
+			{
+				return this._score;
+			}
+			set
+			{
+				if ((this._score != value))
+				{
+					this.OnscoreChanging(value);
+					this.SendPropertyChanging();
+					this._score = value;
+					this.SendPropertyChanged("score");
+					this.OnscoreChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_timestamp", DbType="DateTime NOT NULL")]
+		public System.DateTime timestamp
+		{
+			get
+			{
+				return this._timestamp;
+			}
+			set
+			{
+				if ((this._timestamp != value))
+				{
+					this.OntimestampChanging(value);
+					this.SendPropertyChanging();
+					this._timestamp = value;
+					this.SendPropertyChanged("timestamp");
+					this.OntimestampChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_text", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string text
+		{
+			get
+			{
+				return this._text;
+			}
+			set
+			{
+				if ((this._text != value))
+				{
+					this.OntextChanging(value);
+					this.SendPropertyChanging();
+					this._text = value;
+					this.SendPropertyChanged("text");
+					this.OntextChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_event_id", DbType="Int NOT NULL")]
+		public int event_id
+		{
+			get
+			{
+				return this._event_id;
+			}
+			set
+			{
+				if ((this._event_id != value))
+				{
+					this.Onevent_idChanging(value);
+					this.SendPropertyChanging();
+					this._event_id = value;
+					this.SendPropertyChanged("event_id");
+					this.Onevent_idChanged();
 				}
 			}
 		}
