@@ -65,6 +65,7 @@ namespace college_event
             {
                 Response.Write("<script>alert('Error occured while creating the user');</script>");
             }
+            Response.Redirect("Login.aspx");
         }
 
         public string EnryptString(string strEncrypted)

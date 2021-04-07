@@ -13,7 +13,7 @@ namespace college_event
         {
             try
             {
-                if (string.IsNullOrEmpty((string)Session["status"]))
+                if (string.IsNullOrEmpty((string)Session["name"]))
                 {
                     login.Visible = true;     // User Login button
                     register.Visible = true;     // User Sign-up button
@@ -22,31 +22,16 @@ namespace college_event
                     greetings.Visible = false;      // Hello User button     
 
                 }
-                else if (Session["status"].Equals("1"))    // User
+                else  // User
                 {
                     login.Visible = false;     // User Login button
                     register.Visible = false;     // User Sign-up button
 
                     logout.Visible = true;       // Logout button
-                    greetings.Text = "Hello " + Session["fullname"].ToString();      // Hello User button 
+                    greetings.Text = "Hello " + Session["name"].ToString() + "!";      // Hello User button 
                     
                 }
-                else if (Session["status"].Equals("2")) // User is Admin
-                {
-                    login.Visible = false;     // User Login button
-                    register.Visible = false;     // User Sign-up button
-
-                    logout.Visible = true;       // Logout button
-                    greetings.Text = "Hello " + Session["fullname"].ToString();      // Hello Admin button
-                }
-                else if (Session["status"].Equals("3")) // User is Super-Admin
-                {
-                    login.Visible = false;     // User Login button
-                    register.Visible = false;     // User Sign-up button
-
-                    logout.Visible = true;       // Logout button
-                    greetings.Text = "Hello " + Session["fullname"].ToString();      // Hello Admin button
-                }
+                
             }
             catch (Exception ex)
             {
@@ -64,6 +49,19 @@ namespace college_event
         // Login Page
         protected void login_Click(object sender, EventArgs e)
         {
+            Response.Redirect("Login.aspx");
+        }
+
+        protected void logout_Click(object sender, EventArgs e)
+        {
+            Session["uid"] = "";
+            Session["name"] = "";
+            Session["status"] = "";
+            login.Visible = true;     // User Login button
+            register.Visible = true;     // User Sign-up button
+
+            logout.Visible = false;       // Logout button
+            greetings.Visible = false;      // Hello User button     
             Response.Redirect("Login.aspx");
         }
     }

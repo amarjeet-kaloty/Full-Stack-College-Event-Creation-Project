@@ -1709,7 +1709,7 @@
     <Content Include="Fontawesome\webfonts\fa-brands-400.svg" />
     <Content Include="Fontawesome\webfonts\fa-regular-400.svg" />
     <Content Include="Fontawesome\webfonts\fa-solid-900.svg" />
-    <Content Include="home.aspx" />
+    <Content Include="Images\logo_college_event.png" />
     <Content Include="Images\star-empty-lg.png" />
     <Content Include="Images\star-fill-lg.png" />
     <Content Include="SetLocation.aspx" />
@@ -1751,13 +1751,6 @@
     </Compile>
     <Compile Include="CreateUniversityProfile.aspx.designer.cs">
       <DependentUpon>CreateUniversityProfile.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="home.aspx.cs">
-      <DependentUpon>home.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="home.aspx.designer.cs">
-      <DependentUpon>home.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

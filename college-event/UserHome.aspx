@@ -2,29 +2,10 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
-    <%--<script async
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdfWceQkuQGuFQjZk8mjWMjb6HgtAAvs8&callback=initialize">
-    </script>
-    <script>  
-        var mapcode;
-        var diag;
-        var geocoder;
-        function initialize() {
-            mapcode = new google.maps.Geocoder();
-            var lnt = new google.maps.LatLng(41.871941, 12.567380);
-            var diagChoice = {
-                zoom: 15,
-                center: lnt,
-                diagId: google.maps.MapTypeId.ROADMAP
-            }
-            diag = new google.maps.Map(document.getElementById('map_populate'), diagChoice);
-        }
-        google.maps.event.addDomListener(window, 'load', initialize);
-    </script>--%>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <%-- <script src="Scripts/jquery-1.7.1.js"></script>
+     <script src="Scripts/jquery-1.7.1.js"></script>
     <script language="javascript" type="text/javascript">
         $(document).ready(function () {
             $(".rating-star-block .star").mouseleave(function () {
@@ -69,27 +50,28 @@
         //        $(this).hide(); n();
         //    });
         //}
-    </script>--%>
-    <style type="text/css">
+    </script>
+
+   <%-- <style type="text/css">
         /*.rating-star-block .star.outline {
             background: url("Images/star-empty-lg.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
         }*/
         /*.rating-star-block .star.filled {
             background: url("Images/star-fill-lg.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
         }*/
-        .rating-star-block .star {
+        /*.rating-star-block .star {
             color:#ff0000;
             display : inline-block;
             height:24px;
             overflow:hidden;
             text-indent:-999em;
             width:24px;
-        }
+        }*/
         /*a {
             color: #ff0000;
             text-decoration: none;
         }*/
-    </style>
+    </style>--%>
 
 
     <div class="container">
@@ -180,11 +162,11 @@
                                                     <div class="row">
                                                         <div class="col-12">
                                                             <div class="rating-star-block" id="rating">
-                                                                <a class="fa fa-star-o" href="#" title="vote 1"></a>
-                                                                <a class="fa fa-star-o" href="#" title="vote 2"></a>
-                                                                <a class="fa fa-star-o" href="#" title="vote 3"></a>
-                                                                <a class="fa fa-star-o" href="#" title="vote 4"></a>
-                                                                <a class="fa fa-star-o" href="#" title="vote 5"></a>
+                                                                <a class="fa fa-star" href="#" title="vote 1"></a>
+                                                                <a class="fa fa-star" href="#" title="vote 2"></a>
+                                                                <a class="fa fa-star" href="#" title="vote 3"></a>
+                                                                <a class="fa fa-star" href="#" title="vote 4"></a>
+                                                                <a class="fa fa-star" href="#" title="vote 5"></a>
                                                             </div>
                                                         </div>
                                                     </div>
