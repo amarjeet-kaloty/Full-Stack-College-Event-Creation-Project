@@ -15,12 +15,12 @@ namespace college_event
     {
 
         /// <summary>
-        /// GridView_RSO control.
+        /// GridView_ApproveEvent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView_RSO;
+        protected global::System.Web.UI.WebControls.GridView GridView_ApproveEvent;
     }
 }

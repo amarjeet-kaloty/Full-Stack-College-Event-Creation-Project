@@ -1709,9 +1709,10 @@
     <Content Include="Fontawesome\webfonts\fa-brands-400.svg" />
     <Content Include="Fontawesome\webfonts\fa-regular-400.svg" />
     <Content Include="Fontawesome\webfonts\fa-solid-900.svg" />
+    <Content Include="Images\FilledStar.png" />
     <Content Include="Images\logo_college_event.png" />
-    <Content Include="Images\star-empty-lg.png" />
-    <Content Include="Images\star-fill-lg.png" />
+    <Content Include="Images\Star.png" />
+    <Content Include="Images\WaitingStar.png" />
     <Content Include="SetLocation.aspx" />
     <Content Include="Style.css" />
     <Content Include="SuperAdminHome.aspx" />

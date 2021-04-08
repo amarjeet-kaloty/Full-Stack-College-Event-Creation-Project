@@ -1,77 +1,36 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="UserHome.aspx.cs" Inherits="college_event.UserHome" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style type="text/css">
+        .Star {
+            background-image: url(Images/Star.png);
+            background-repeat: no-repeat;
+            height: 24px;
+            width: 24px;
+            background-size: 100%;
+        }
+
+        .WaitingStar {
+            background-image: url(Images/WaitingStar.png);
+            background-repeat: no-repeat;
+            height: 24px;
+            width: 24px;
+            background-size: 100%;
+        }
+
+        .FilledStar {
+            background-image: url(Images/FilledStar.png);
+            background-repeat: no-repeat;
+            height: 24px;
+            width: 24px;
+            background-size: 100%;
+        }
+    </style>
 
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-     <script src="Scripts/jquery-1.7.1.js"></script>
-    <script language="javascript" type="text/javascript">
-        $(document).ready(function () {
-            $(".rating-star-block .star").mouseleave(function () {
-                $("#" + $(this).parent().attr('id') + " .star").each(function () {
-                    $(this).addClass("outline");
-                    $(this).removeClass("filled");
-                });
-            });
-            $(".rating-star-block .star").mouseenter(function () {
-                var hoverVal = $(this).attr('rating');
-                $(this).prevUntil().addClass("filled");
-                $(this).addClass("filled");
-                $("#RAT").html(hoverVal);
-            });
-            //$(".rating-star-block .star").click(function () {
-
-            //    var v = $(this).attr('rating');
-            //    var newScore = 0;
-            //    var updateP = "#" + $(this).parent().attr('id') + ' .CurrentScore';
-            //    var artID = $("#" + $(this).parent().attr('id') + ' .articleID').val();
-
-            //    $("#" + $(this).parent().attr('id') + " .star").hide();
-            //    $("#" + $(this).parent().attr('id') + " .yourScore").html("Your Score is : &nbsp;<b style='color:#ff9900; font-size:15px'>" + v + "</b>");
-            //    $.ajax({
-            //        type: "POST",
-            //        url: "Default.aspx/SaveRating",
-            //        data: "{articleID: '" + artID + "',rate: '" + v + "'}",
-            //        contentType: "application/json; charset=utf-8",
-            //        dataType: "json",
-            //        success: function (data) {
-            //            setNewScore(updateP, data.d);
-            //        },
-            //        error: function (data) {
-            //            alert(data.d);
-            //        }
-            //    });
-            //});
-        });
-        //function setNewScore(container, data) {
-        //    $(container).html(data);
-        //    $("#myElem").show('1000').delay(2000).queue(function (n) {
-        //        $(this).hide(); n();
-        //    });
-        //}
-    </script>
-
-   <%-- <style type="text/css">
-        /*.rating-star-block .star.outline {
-            background: url("Images/star-empty-lg.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
-        }*/
-        /*.rating-star-block .star.filled {
-            background: url("Images/star-fill-lg.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
-        }*/
-        /*.rating-star-block .star {
-            color:#ff0000;
-            display : inline-block;
-            height:24px;
-            overflow:hidden;
-            text-indent:-999em;
-            width:24px;
-        }*/
-        /*a {
-            color: #ff0000;
-            text-decoration: none;
-        }*/
-    </style>--%>
 
 
     <div class="container">
@@ -82,15 +41,20 @@
                     <h2>Events Summary</h2>
                 </div>
 
-                <div class="col-md-3">
-                    <asp:Button ID="create_RSO" CssClass="btn btn-info" runat="server" Text="Create RSO" OnClick="create_RSO_Click" />
+                <div class="col-md-2">
+                    <asp:Button ID="create_RSO" CssClass="btn btn-info btn-lg" runat="server" Text="Create RSO" OnClick="create_RSO_Click" />
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-2">
+                    <asp:Button ID="creat_event" CssClass="btn btn-info btn-lg" runat="server" Text="Create Event" Visible="true" OnClick="creat_event_Click" />
+                </div>
+
+
+                <div class="col-md-2">
                     <asp:Button ID="view_events_by_rso" CssClass="btn btn-info btn-lg" runat="server" Text="View Events By RSO's" Visible="true" OnClick="view_events_by_rso_Click" />
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <asp:Button ID="create_university_profile" CssClass="btn btn-info btn-lg" runat="server" Text="Create University Profile" Visible="true" />
                 </div>
             </div>
@@ -100,84 +64,87 @@
                 <div class="col">
                     <asp:GridView ID="GridView_UniversityEvents" class="table table-striped table-bordered" EmptyDataText="No Data Found"
                         ShowHeaderWhenEmpty="True" AutoGenerateColumns="False" runat="server">
-                        <alternatingrowstyle backcolor="#F7F7F7" />
-                        <headerstyle backcolor="#383838" />
-                        <columns>
-                             <asp:TemplateField>
-                                 <ItemTemplate>
-                                     <div class="container-fluid">
-                                            <div class="row">
-                                                <div class="col-lg-10">
+                        <AlternatingRowStyle BackColor="#F7F7F7" />
+                        <HeaderStyle BackColor="#383838" />
+                        <Columns>
+                            <asp:TemplateField>
+                                <ItemTemplate>
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-lg-10">
 
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <asp:Label ID="Label1" runat="server" Text='<%# Eval("Event") %>' Font-Bold="True" Font-Size="Large"></asp:Label>
-                                                            Category - 
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <asp:Label ID="Label1" runat="server" Text='<%# Eval("Event") %>' Font-Bold="True" Font-Size="Large"></asp:Label>
+                                                        Category - 
                                                             <asp:Label ID="Label5" runat="server" Font-Bold="True" Font-Size="Smaller" Text='<%# Eval("Category") %>'></asp:Label>
-                                                        </div>
                                                     </div>
+                                                </div>
 
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                                Date - 
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        Date - 
                                                                 <asp:Label ID="Label2" runat="server" Font-Bold="True" Font-Size="Smaller" Text='<%# Eval("Date") %>'></asp:Label>
-                                                                &nbsp;| 
+                                                        &nbsp;| 
                                                                 Start Time -
                                                                 <asp:Label ID="Label3" runat="server" Font-Bold="True" Font-Size="Smaller" Text='<%# Eval("Start") %>'></asp:Label>
-                                                                &nbsp;| 
+                                                        &nbsp;| 
                                                                 End Time -
                                                                 <asp:Label ID="Label4" runat="server" Font-Bold="True" Font-Size="Smaller" Text='<%# Eval("End") %>'></asp:Label>
-                                                        </div>
                                                     </div>
+                                                </div>
 
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            Contact -
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        Contact -
                                                                 <asp:Label ID="Label9" runat="server" Font-Bold="True" Font-Size="Smaller" Text='<%# Eval("Contact") %>'></asp:Label>
-                                                                &nbsp;| 
+                                                        &nbsp;| 
                                                             Email -
                                                                 <asp:Label ID="Label10" runat="server" Font-Bold="True" Font-Size="Smaller" Text='<%# Eval("Email") %>'></asp:Label>
-                                                                &nbsp;|
-                                                        </div>
+                                                        &nbsp;|
                                                     </div>
+                                                </div>
 
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            Description -
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        Description -
                                                                 <asp:Label ID="Label12" runat="server" Font-Bold="True" Font-Italic="True" Font-Size="Smaller" Text='<%# Eval("Description") %>'></asp:Label>
-                                                        </div>
                                                     </div>
+                                                </div>
 
-                                                     <div class="row">
-                                                        <div class="col-12">
-                                                            Address -
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        Address -
                                                                 <asp:Label ID="Label6" runat="server" Font-Bold="True" Font-Size="Smaller" Text='<%# Eval("Address") %>'></asp:Label>
-                                                                &nbsp;| 
+                                                        &nbsp;| 
                                                             Location -
                                                                 <asp:Label ID="Label7" runat="server" Font-Bold="True" Font-Size="Smaller" Text='<%# Eval("Location") %>'></asp:Label>
-                                                                &nbsp;|
-                                                        </div>
+                                                        &nbsp;|
                                                     </div>
+                                                </div>
 
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <div class="rating-star-block" id="rating">
-                                                                <a class="fa fa-star" href="#" title="vote 1"></a>
-                                                                <a class="fa fa-star" href="#" title="vote 2"></a>
-                                                                <a class="fa fa-star" href="#" title="vote 3"></a>
-                                                                <a class="fa fa-star" href="#" title="vote 4"></a>
-                                                                <a class="fa fa-star" href="#" title="vote 5"></a>
-                                                            </div>
-                                                        </div>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
+                                                        </asp:ToolkitScriptManager>
+                                                        <asp:Rating ID="Rating1" runat="server" AutoPostBack="true"
+                                                            StarCssClass="Star" WaitingStarCssClass="WaitingStar" EmptyStarCssClass="Star"
+                                                            FilledStarCssClass="FilledStar">
+                                                        </asp:Rating>
+                                                        <asp:TextBox runat="server" CssClass="form-control" ID="comments" TextMode="MultiLine"></asp:TextBox>
+                                                        <br />
+                                                        <asp:Button runat="server" class="btn btn-success btn-block" Text="Submit" ID="btn_submit" />
                                                     </div>
-
                                                 </div>
                                             </div>
-                                        </div>
 
-                                 </ItemTemplate>
-                                </asp:TemplateField>
-                        </columns>
+                                        </div>
+                                    </div>
+                </div>
+
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
                     </asp:GridView>
                 </div>
             </div>
@@ -185,21 +152,21 @@
             <div class="col-md-6">
                 <div class="row" style="margin-top: 20px">
                     <div>
-                        <asp:Label id="label_join_rso" runat="server" Text="Join a RSO"></asp:Label>
+                        <asp:Label ID="label_join_rso" runat="server" Text="Join a RSO"></asp:Label>
                     </div>
                     <asp:GridView ID="GridView_RSO" runat="server" GridLines="Both" BorderStyle="Solid" BorderWidth="3px" CellPadding="15"
                         CssClass="table-bordered" EmptyDataText="No Data Found" ShowHeaderWhenEmpty="True" Font-Size="Medium"
                         ForeColor="Black" HorizontalAlign="Left" Font-Bold="True">
-                        <alternatingrowstyle backcolor="#F7F7F7" />
-                        <headerstyle backcolor="#383838" borderstyle="Solid" font-bold="True" font-size="Larger" forecolor="White" horizontalalign="Center" />
-                        <rowstyle borderstyle="Solid" verticalalign="Middle" horizontalalign="Center" />
-                        <columns>
+                        <AlternatingRowStyle BackColor="#F7F7F7" />
+                        <HeaderStyle BackColor="#383838" BorderStyle="Solid" Font-Bold="True" Font-Size="Larger" ForeColor="White" HorizontalAlign="Center" />
+                        <RowStyle BorderStyle="Solid" VerticalAlign="Middle" HorizontalAlign="Center" />
+                        <Columns>
                             <asp:TemplateField>
                                 <ItemTemplate>
                                     <asp:Button ID="join_RSO" CssClass="btn btn-info" runat="server" Text="Join" OnClick="Join_Click" data-myData='<%# Eval("RSO") %>'></asp:Button>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                        </columns>
+                        </Columns>
                     </asp:GridView>
                 </div>
             </div>
@@ -208,72 +175,72 @@
                 <div class="col">
                     <asp:GridView ID="GridView_RSO_user_follows" class="table table-striped table-bordered" EmptyDataText="No Data Found"
                         ShowHeaderWhenEmpty="True" AutoGenerateColumns="False" runat="server">
-                        <alternatingrowstyle backcolor="#F7F7F7" />
-                        <headerstyle backcolor="#383838" />
-                        <columns>
-                             <asp:TemplateField>
-                                 <ItemTemplate>
-                                     <div class="container-fluid">
-                                            <div class="row">
-                                                <div class="col-lg-10">
+                        <AlternatingRowStyle BackColor="#F7F7F7" />
+                        <HeaderStyle BackColor="#383838" />
+                        <Columns>
+                            <asp:TemplateField>
+                                <ItemTemplate>
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-lg-10">
 
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <asp:Label ID="Label8" runat="server" Text='<%# Eval("Event") %>' Font-Bold="True" Font-Size="Large"></asp:Label>
-                                                            Category - 
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <asp:Label ID="Label8" runat="server" Text='<%# Eval("Event") %>' Font-Bold="True" Font-Size="Large"></asp:Label>
+                                                        Category - 
                                                             <asp:Label ID="Label11" runat="server" Font-Bold="True" Font-Size="Smaller" Text='<%# Eval("Category") %>'></asp:Label>
-                                                        </div>
                                                     </div>
+                                                </div>
 
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                                Date - 
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        Date - 
                                                                 <asp:Label ID="Label13" runat="server" Font-Bold="True" Font-Size="Smaller" Text='<%# Eval("Date") %>'></asp:Label>
-                                                                &nbsp;| 
+                                                        &nbsp;| 
                                                                 Start Time -
                                                                 <asp:Label ID="Label14" runat="server" Font-Bold="True" Font-Size="Smaller" Text='<%# Eval("Start") %>'></asp:Label>
-                                                                &nbsp;| 
+                                                        &nbsp;| 
                                                                 End Time -
                                                                 <asp:Label ID="Label15" runat="server" Font-Bold="True" Font-Size="Smaller" Text='<%# Eval("End") %>'></asp:Label>
-                                                        </div>
                                                     </div>
+                                                </div>
 
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            Contact -
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        Contact -
                                                                 <asp:Label ID="Label16" runat="server" Font-Bold="True" Font-Size="Smaller" Text='<%# Eval("Contact") %>'></asp:Label>
-                                                                &nbsp;| 
+                                                        &nbsp;| 
                                                             Email -
                                                                 <asp:Label ID="Label17" runat="server" Font-Bold="True" Font-Size="Smaller" Text='<%# Eval("Email") %>'></asp:Label>
-                                                                &nbsp;|
-                                                        </div>
+                                                        &nbsp;|
                                                     </div>
+                                                </div>
 
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            Description -
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        Description -
                                                                 <asp:Label ID="Label18" runat="server" Font-Bold="True" Font-Italic="True" Font-Size="Smaller" Text='<%# Eval("Description") %>'></asp:Label>
-                                                        </div>
                                                     </div>
+                                                </div>
 
-                                                     <div class="row">
-                                                        <div class="col-12">
-                                                            Address -
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        Address -
                                                                 <asp:Label ID="Label19" runat="server" Font-Bold="True" Font-Size="Smaller" Text='<%# Eval("Address") %>'></asp:Label>
-                                                                &nbsp;| 
+                                                        &nbsp;| 
                                                             Location -
                                                                 <asp:Label ID="Label20" runat="server" Font-Bold="True" Font-Size="Smaller" Text='<%# Eval("Location") %>'></asp:Label>
-                                                                &nbsp;|
-                                                        </div>
+                                                        &nbsp;|
                                                     </div>
-
                                                 </div>
+
                                             </div>
                                         </div>
+                                    </div>
 
-                                 </ItemTemplate>
-                                </asp:TemplateField>
-                        </columns>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
                     </asp:GridView>
                 </div>
             </div>

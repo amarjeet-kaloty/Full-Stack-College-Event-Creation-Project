@@ -243,5 +243,10 @@ namespace college_event
             GridView_RSO_user_follows.DataSource = RSO_member_of;
             GridView_RSO_user_follows.DataBind();
         }
+
+        protected void creat_event_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("CreateEventPage.aspx");
+        }
     }
 }

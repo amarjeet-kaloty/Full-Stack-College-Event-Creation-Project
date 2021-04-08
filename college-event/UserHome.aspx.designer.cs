@@ -24,6 +24,15 @@ namespace college_event
         protected global::System.Web.UI.WebControls.Button create_RSO;
 
         /// <summary>
+        /// creat_event control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button creat_event;
+
+        /// <summary>
         /// view_events_by_rso control.
         /// </summary>
         /// <remarks>
