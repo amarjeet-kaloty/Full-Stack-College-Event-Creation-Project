@@ -65,34 +65,52 @@
     </script>
 </head>
 <br />
+
+
+
 <body>
-    <form id="form1" runat="server">
-        <div id="map_populate" style="width: 80%; height: 300px; border: 5px solid #5E5454;">
-        </div>
-        <div>
-            <h2>Enter Location</h2>
-        </div>
-        <div>
-            <asp:TextBox ID="txt_location" TextMode="MultiLine" Width="200px" Height="50px" runat="server"></asp:TextBox>
-        </div>
-        <div>
-            <label>Latitude: </label>
-            <asp:TextBox ID="latitude" runat="server"></asp:TextBox>
-        </div>
-        <div>
-            <label>Longitude: </label>
-            <asp:TextBox ID="longitude" runat="server"></asp:TextBox>
-        </div>
-        <div>
-            <label>Address: </label>
-            <asp:TextBox ID="Address" TextMode="MultiLine" Width="150" Height="50px" runat="server"></asp:TextBox>
-        </div>
-        <div>
-            <div>
-                <input type="button" value="Search" onclick="getmap()">
-                <asp:Button runat="server" Text="Confirm" OnClick="Unnamed1_Click" />
+    <div class="container"; style="text-align:center; align-items:center; align-content:center">
+        <div class="row">
+            <div class="col">
+                <h2 style="margin-top:10px; margin-bottom:30px; background-color:#566573; color:white; padding: 5px; text-align:center">Set Location</h2>
             </div>
-    </form>
+        </div>
+
+        <form id="form1" runat="server">
+            <div style="margin-bottom: 10px">
+                <h3>Enter Location</h3>
+                <asp:TextBox ID="txt_location" TextMode="MultiLine" Width="200px" Height="50px" runat="server"></asp:TextBox>
+            </div>
+
+            <div style="margin-bottom: 30px">
+                <input type="button" value="Search" onclick="getmap()">
+            </div>
+
+            <div id="map_populate" style="width: 100%; height: 500px; border: 1px solid #5E5454; text-align: center">
+            </div>
+
+            <h3>Selected Location</h3>
+
+            <label>Latitude</label>
+            <div style="margin-bottom:15px; margin-top:5px;">
+                <asp:TextBox ID="latitude" runat="server"></asp:TextBox>
+            </div>
+
+            <label>Longitude</label>
+            <div style="margin-bottom:15px; margin-top:5px;">
+                <asp:TextBox ID="longitude" runat="server"></asp:TextBox>
+            </div>
+            
+            <label>Address</label>
+            <div style="margin-bottom:15px; margin-top:5px;">
+                <asp:TextBox ID="Address" TextMode="MultiLine" Width="150" Height="50px" runat="server"></asp:TextBox>
+            </div>
+            
+            <div>
+                <asp:Button runat="server" class="btn btn-primary" Text="Confirm" OnClick="Unnamed1_Click" />
+            </div>
+        </form>
+    </div>
 </body>
 </html>
 

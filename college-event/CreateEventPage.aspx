@@ -96,16 +96,6 @@
                             </div>
                         </div>
 
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <center>
-                                      </center>
-                                </div>
-                            </div>
-                        </div>
-
                         <div class="form-group row" style="margin-top:30px">
                             <div class="col-sm-10">
                                 <asp:Button class="btn btn-primary" ID="create_event" runat="server" Text="Create Event" OnClick="create_event_Click" />
