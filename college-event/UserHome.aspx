@@ -131,6 +131,9 @@
 
         <h2 style="margin-top:50px; background-color:#566573; color:white; padding: 5px">RSO</h2>
         <div class="row" style="margin-top: 10px">
+<%--            <div>
+                <asp:Label id="label_join_rso" runat="server" Text="Join a RSO"></asp:Label>
+            </div>--%>
             <asp:GridView ID="GridView_RSO" runat="server" GridLines="Both" BorderStyle="Solid" BorderWidth="1px" CellPadding="10"
                 CssClass="table-bordered" EmptyDataText="No Data Found" ShowHeaderWhenEmpty="True" Font-Size="small"
                 ForeColor="#1B2631" HorizontalAlign="Left" Font-Bold="False">
