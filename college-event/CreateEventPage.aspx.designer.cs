@@ -15,13 +15,13 @@ namespace college_event
     {
 
         /// <summary>
-        /// DropDownList1 control.
+        /// category control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList category;
 
         /// <summary>
         /// set_location control.
@@ -33,6 +33,15 @@ namespace college_event
         protected global::System.Web.UI.WebControls.Button set_location;
 
         /// <summary>
+        /// Location control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Location;
+
+        /// <summary>
         /// date control.
         /// </summary>
         /// <remarks>
@@ -42,13 +51,13 @@ namespace college_event
         protected global::System.Web.UI.WebControls.TextBox date;
 
         /// <summary>
-        /// TextBox1 control.
+        /// event_type control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox event_type;
 
         /// <summary>
         /// description control.

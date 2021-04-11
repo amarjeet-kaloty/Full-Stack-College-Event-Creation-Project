@@ -15,7 +15,7 @@
                         <div class="form-group row" style="margin-top: 5px; margin-bottom:10px">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Category</label>
                             <div class="col-sm-10">
-                                <asp:DropDownList ID="DropDownList1" runat="server" class="form-control">
+                                <asp:DropDownList ID="category" runat="server" class="form-control">
                                     <asp:ListItem Value="Public">Public</asp:ListItem>
                                     <asp:ListItem Value="Private">Private</asp:ListItem>
                                     <asp:ListItem Value="RSO">RSO</asp:ListItem>
@@ -31,6 +31,13 @@
                             </div>
                         </div>
 
+                        <div class="form-group row" style="margin-top: 5px; margin-bottom:10px">
+                            <label for="inputEmail3" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <asp:Label runat="server" ID="Location" class="text-muted" Text="No location is selected"></asp:Label>
+                            </div>
+                        </div>
+
                         
                         <div class="form-group row" style="margin-top: 5px; margin-bottom:10px">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Event Date</label>
@@ -43,9 +50,9 @@
 
 
                         <div class="form-group row" style="margin-top: 5px; margin-bottom:10px">
-                            <label for="inputEmail3" class="col-sm-2 col-form-label">Event Type</label>
+                            <label class="col-sm-2 col-form-label">Event Type</label>
                             <div class="col-sm-10">
-                              <asp:TextBox runat="server" ID="TextBox1" type="text" class="form-control" placeholder="Event Type"></asp:TextBox>
+                              <asp:TextBox runat="server" ID="event_type" type="text" class="form-control" placeholder="Event Type"></asp:TextBox>
                             </div>
                         </div>
 
