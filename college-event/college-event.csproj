@@ -1726,6 +1726,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\EventStream.cs" />
     <Compile Include="Classes\Comments.cs" />
     <Compile Include="CollegeEvent.designer.cs">
       <AutoGen>True</AutoGen>
