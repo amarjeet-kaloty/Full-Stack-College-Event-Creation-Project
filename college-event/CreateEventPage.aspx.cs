@@ -57,6 +57,20 @@ namespace college_event
             createEvent.contact = contact_number.Text.ToString();
             createEvent.email = contact_email.Text.ToString();
             createEvent.event_no = Convert.ToInt32(event_id);
+
+            var qry_user = (from temp in db.RSOs
+                           where temp.email == Session["Uid"].ToString()
+                           select temp).ToList();
+
+            if(qry_user.Count == 0)
+            {
+                createEvent.status = true;
+            }
+            else
+            {
+                createEvent.status = false;
+            }
+
             try
             {
                 db.Events.InsertOnSubmit(createEvent);

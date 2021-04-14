@@ -21,6 +21,8 @@
     <!-- Datatable js -->
     <script src="Datatable/js/jquery.dataTables.min.js"></script>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>

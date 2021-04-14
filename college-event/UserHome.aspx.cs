@@ -2,14 +2,20 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Text;
 using System.Web;
+using System.Web.Script.Services;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using AjaxControlToolkit;
 
 namespace college_event
 {
     public partial class UserHome : System.Web.UI.Page
     {
+        string rating_value;
+        List<string> event_N = new List<string>(); 
         CollegeEventDataContext db = new CollegeEventDataContext();
         string[] parts;
         string username;
@@ -22,7 +28,7 @@ namespace college_event
 
             parts = email.Split(new[] { '@' });
             username = parts[0];
-            domain = "knights.ucf.edu";                        // parts[1];
+            domain = parts[1];                                               //  "knights.ucf.edu";                        // parts[1];
             if (!IsPostBack)
             {
                 Load_GridView();
@@ -73,6 +79,7 @@ namespace college_event
                 row[5] = split_date[0];
                 row[6] = value.contact;
                 row[7] = value.email;
+                event_N.Add(value.event_no.ToString());
                 row[8] = x;
                 row[9] = y;
                 table_view_events.Rows.Add(row);
@@ -248,5 +255,47 @@ namespace college_event
         {
             Response.Redirect("CreateEventPage.aspx");
         }
+
+        protected void OnRatingChanged(object sender, RatingEventArgs e)
+        {
+            rating_value = e.Value;
+        }
+
+        // Comments from event
+        protected void btn_submit_Click(object sender, EventArgs e)
+        {
+            GridViewRow clickedRow = ((Button)sender).NamingContainer as GridViewRow;
+            //Button btn = sender as Button;
+            //GridViewRow row = btn.NamingContainer as GridViewRow;
+            //string pk = GridView_UniversityEvents.DataKeys[row.RowIndex].Values["Id"].ToString();
+            var x = clickedRow.RowIndex;
+            //string pk = GridView_UniversityEvents.DataKeys[clickedRow.RowIndex].ToString();
+
+            //var add_comment = new Comment();
+            //Rating r = new Rating();
+            //add_comment.uid = "userTest5@knights.ucf.edu";    // Session["uid"].ToString();
+            //var a = rating_value;
+            //add_comment.score = Convert.ToInt32(r.CurrentRating.ToString());
+            //add_comment.timestamp = DateTime.Now;;
+        }
+
+        // Star rating implementation
+        //[WebMethod]
+        //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        //protected void insert_rating(int score) 
+        //{
+        //    var add_score = new test_score();
+        //    add_score.score = score;
+        //    try
+        //    {
+        //        db.test_scores.InsertOnSubmit(add_score);
+        //        db.SubmitChanges();
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Console.WriteLine(e);
+        //    }
+        //}
+
     }
 }

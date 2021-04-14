@@ -1,31 +1,66 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="UserHome.aspx.cs" Inherits="college_event.UserHome" %>
+
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script language="javascript" type="text/javascript">
+        $(document).ready(function () {
+            $(".rating-star-block .star").mouseleave(function () {
+                $("#" + $(this).parent().attr('id') + " .star").each(function () {
+                    $(this).addClass("outline");
+                    $(this).removeClass("filled");
+                });
+            });
+            $(".rating-star-block .star").mouseenter(function () {
+                var hoverVal = $(this).attr('rating');
+                $(this).prevUntil().addClass("filled");
+                $(this).addClass("filled");
+                $("#RAT").html(hoverVal);
+            });
+            $(".rating-star-block .star").click(function () {
+
+                var v = $(this).attr('rating');
+                var newScore = 0;
+                $("#" + $(this).parent().attr('id') + " .star").hide();
+                $("#" + $(this).parent().attr('id') + " .yourScore").html("Your Score is : &nbsp;<b style='color:#ff9900; font-size:15px'>" + v + "</b>");
+            });
+            $.ajax({
+                type: "POST",
+                url: "https://localhost:44353/UserHome.aspx/insert_rating",
+                data: "{score: '" + v + "'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+            });
+        });
+    </script>
     <style type="text/css">
-        .Star {
-            background-image: url(Images/Star.png);
-            background-repeat: no-repeat;
-            height: 24px;
-            width: 24px;
+        .rating-star-block .star.outline {
+            background: url("Images/Star.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+            width:24px;
+            height:24px;
             background-size: 100%;
         }
-
-        .WaitingStar {
-            background-image: url(Images/WaitingStar.png);
-            background-repeat: no-repeat;
-            height: 24px;
-            width: 24px;
+        .rating-star-block .star.filled {
+            background: url("Images/FilledStar.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+            width:24px;
+            height:24px;
             background-size: 100%;
         }
-
-        .FilledStar {
-            background-image: url(Images/FilledStar.png);
-            background-repeat: no-repeat;
-            height: 24px;
-            width: 24px;
+        .rating-star-block .star {
+            color:rgba(0,0,0,0);
+            display : inline-block;
+            height:24px;
+            overflow:hidden;
+            text-indent:-999em;
+            width:24px;
             background-size: 100%;
         }
+        a {
+            color:#005782;
+            text-decoration:none;
+        }
+ 
+ 
     </style>
 
 </asp:Content>
@@ -123,24 +158,23 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
-                                                        </asp:ToolkitScriptManager>
-                                                        <asp:Rating ID="Rating1" runat="server" AutoPostBack="true"
-                                                            StarCssClass="Star" WaitingStarCssClass="WaitingStar" EmptyStarCssClass="Star"
-                                                            FilledStarCssClass="FilledStar">
-                                                        </asp:Rating>
-                                                        <asp:TextBox runat="server" CssClass="form-control" ID="comments" TextMode="MultiLine"></asp:TextBox>
-                                                        <br />
-                                                        <asp:Button runat="server" class="btn btn-success btn-block" Text="Submit" ID="btn_submit" />
-                                                    </div>
-                                                </div>
-                                            </div>
+                                                <asp:TemplateField>
+                                                    <Itemtemplate>
+                                                        <div class="rating-star-block" id='rating_star'> 
+                                                        <div class="yourScore">Your Score : </div>
+                                                            <a class="star outline" href="#" rating="1" title="vote 1"> vote 1</a>
+                                                            <a class="star outline" href="#" rating="2" title="vote 2"> vote 2</a>
+                                                            <a class="star outline" href="#" rating="3" title="vote 3"> vote 3</a>
+                                                            <a class="star outline" href="#" rating="4" title="vote 4"> vote 4</a>
+                                                            <a class="star outline" href="#" rating="5" title="vote 5"> vote 5</a>
+                                                        </div>
+                                                        <asp:TextBox ID="user_rating" runat="server"></asp:TextBox>
+                                                    </Itemtemplate>
+                                                </asp:TemplateField>
 
+                                            </div>
                                         </div>
                                     </div>
-                </div>
 
                                 </ItemTemplate>
                             </asp:TemplateField>
@@ -281,3 +315,77 @@
                     </asp:GridView>
                 </div>
             </div>--%>
+
+<%--<div class="row">
+                                                    <div class="col-12">
+                                                         <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
+                                                            </asp:ToolkitScriptManager>
+                                                        <asp:Rating ID="Rating" runat="server" AutoPostBack="true"  OnChanged="OnRatingChanged"
+                                                            StarCssClass="Star" WaitingStarCssClass="WaitingStar" EmptyStarCssClass="Star"
+                                                            FilledStarCssClass="FilledStar">
+                                                        </asp:Rating>
+                                                        <asp:TextBox runat="server" CssClass="form-control" ID="user_comments" TextMode="MultiLine"></asp:TextBox>
+                                                        <br />
+                                                        <asp:Button runat="server" class="btn btn-success btn-block" Text="Submit" ID="btn_submit" OnClick="btn_submit_Click" />
+                                                    </div>
+                                                </div>--%>
+
+<%-- <style type="text/css">
+        .Star {
+            background-image: url(Images/Star.png);
+            background-repeat: no-repeat;
+            height: 24px;
+            width: 24px;
+            background-size: 100%;
+        }
+
+        .WaitingStar {
+            background-image: url(Images/WaitingStar.png);
+            background-repeat: no-repeat;
+            height: 24px;
+            width: 24px;
+            background-size: 100%;
+        }
+
+        .FilledStar {
+            background-image: url(Images/FilledStar.png);
+            background-repeat: no-repeat;
+            height: 24px;
+            width: 24px;
+            background-size: 100%;
+        }
+    </style>--%>
+
+<%--//$(".rating-star-block .star").click(function () {
+                
+            //    var v = $(this).attr('rating');
+            //    var newScore = 0;
+            //    var updateP = "#" + $(this).parent().attr('id') + ' .CurrentScore';
+            //    var artID = $("#" + $(this).parent().attr('id') + ' .articleID').val();
+                
+            //    $("#" + $(this).parent().attr('id') + " .star").hide();
+            //    $("#" + $(this).parent().attr('id') + " .yourScore").html("Your Score is : &nbsp;<b style='color:#ff9900; font-size:15px'>" + v + "</b>");
+            //    $.ajax({
+            //        type: "POST",
+            //        url: "Default.aspx/SaveRating",
+            //        data: "{articleID: '" + artID + "',rate: '" + v + "'}",
+            //        contentType: "application/json; charset=utf-8",
+            //        dataType: "json",
+            //        success: function (data) {
+            //            setNewScore(updateP, data.d);
+            //        },
+            //        error: function (data) {
+            //            alert(data.d);
+            //        }
+            //    });
+            //});--%>
+
+<%--//function setNewScore(container, data) {
+        //    $(container).html(data);
+        //    $("#myElem").show('1000').delay(2000).queue(function (n) {
+        //        $(this).hide(); n();
+        //    });
+        //}--%>
+
+<%-- <input type="hidden" class="articleID" value='<%#Eval("ArticleID") %>' />
+    Current Score :<span class="CurrentScore"><%#Eval("Score") %></span><br /><div class="yourScore">Your Score : </div>--%>

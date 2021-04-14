@@ -17,8 +17,15 @@
                                  <ItemTemplate>
                                      <div class="container-fluid">
                                             <div class="row">
-                                                <div class="col-lg-10">
 
+                                                <div class="col-lg-2">
+                                                    <div class="row">
+
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-lg-8">
                                                     <div class="row">
                                                         <div class="col-12">
                                                             <asp:Label ID="Label1" runat="server" Text='<%# Eval("Event") %>' Font-Bold="True" Font-Size="Large"></asp:Label>
@@ -68,13 +75,12 @@
                                                                 &nbsp;|
                                                         </div>
                                                     </div>
-
                                                 </div>
 
                                                 <div class="col-lg-2">
                                                     <asp:TemplateField>
                                                         <ItemTemplate>
-                                                            <asp:Button class="btn btn-success" id="approve" runat="server" Text="Approve" />
+                                                            <asp:Button class="btn btn-success" id="approve" runat="server" Text="Approve" OnClick="btn_click_approve"  data-myData='<%# Eval("Category") %>'/>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                 </div>

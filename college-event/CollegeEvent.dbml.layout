@@ -2,18 +2,6 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12.625, 8.5" name="CollegeEvent">
   <DataContextMoniker Name="/CollegeEventDataContext" />
   <nestedChildShapes>
-    <classShape Id="3f5a249e-def0-43ff-aca7-ea2b935605b2" absoluteBounds="0.75, 4.75, 2, 1.9631982421875005">
-      <DataClassMoniker Name="/CollegeEventDataContext/Comment" />
-      <nestedChildShapes>
-        <elementListCompartment Id="3e31befa-1f86-4528-8e2c-ebc2ebf86018" absoluteBounds="0.765, 5.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="1ea05299-1d03-4ece-baab-fc5f68a673da" absoluteBounds="3.5, 1, 2, 2.7324039713541666">
-      <DataClassMoniker Name="/CollegeEventDataContext/Event" />
-      <nestedChildShapes>
-        <elementListCompartment Id="ffaaed78-9b0b-4ac8-8233-9fbebac69495" absoluteBounds="3.515, 1.46, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="02793121-d449-4eb4-9612-8dc5a0a1f977" absoluteBounds="3.75, 4.75, 2, 1.5785953776041666">
       <DataClassMoniker Name="/CollegeEventDataContext/member_master_tbl" />
       <nestedChildShapes>
@@ -32,18 +20,36 @@
         <elementListCompartment Id="bd37196c-fb96-448c-b702-b8131a37f514" absoluteBounds="6.765, 4.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.75 : 2.38544840494792); (3.5 : 2.38544840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/CollegeEventDataContext/set_event_location/set_event_location_Event" />
-      <nodes>
-        <classShapeMoniker Id="922d4755-316d-45ed-8900-b9c55f740a95" />
-        <classShapeMoniker Id="1ea05299-1d03-4ece-baab-fc5f68a673da" />
-      </nodes>
-    </associationConnector>
     <classShape Id="9ca8779a-019d-4f62-9652-87012d72f69d" absoluteBounds="10.375, 2, 2, 1.9631982421875">
       <DataClassMoniker Name="/CollegeEventDataContext/RSO" />
       <nestedChildShapes>
         <elementListCompartment Id="0d8b3d32-dd0e-4e39-b49e-687faef2745d" absoluteBounds="10.39, 2.46, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="0c31afde-a503-4fa2-b17e-e90826ce4762" absoluteBounds="0.875, 4.375, 2, 1.9631982421875">
+      <DataClassMoniker Name="/CollegeEventDataContext/Comment" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6addfd04-2fc4-4547-866f-75ae8142c709" absoluteBounds="0.88999999999999968, 4.835, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3723cd25-aed9-4e9c-b61d-bb881bb8275d" absoluteBounds="7.125, 1.125, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/CollegeEventDataContext/test_score" />
+      <nestedChildShapes>
+        <elementListCompartment Id="037e632a-a34b-411b-9e11-d69018fa7bb2" absoluteBounds="7.14, 1.585, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="708312c6-3961-4e92-9984-812c5994008f" absoluteBounds="3.5, 1, 2, 2.9247054036458331">
+      <DataClassMoniker Name="/CollegeEventDataContext/Event" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6139d01e-c2ba-4c70-b19f-78b78641ac4f" absoluteBounds="3.5149999999999997, 1.46, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 2.38544840494792); (3.5 : 2.38544840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CollegeEventDataContext/set_event_location/set_event_location_Event" />
+      <nodes>
+        <classShapeMoniker Id="922d4755-316d-45ed-8900-b9c55f740a95" />
+        <classShapeMoniker Id="708312c6-3961-4e92-9984-812c5994008f" />
+      </nodes>
+    </associationConnector>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>
