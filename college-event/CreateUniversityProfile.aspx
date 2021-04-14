@@ -15,106 +15,53 @@
         }
     </script>
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
     <div class="container">
-        <div class="row">
-            <div class="col-md-8 mx-auto">
+        <h2 style="margin-top:30px; margin-bottom:50px; background-color:#566573; color:white; padding: 5px; text-align:center">University Profile</h2>
+
+        <div style="margin-left:12%; margin-right:12%"> 
+            <div class="form-group row" style="margin-top: 5px; margin-bottom:10px">
+                <label class="col-sm-2 col-form-label">University Name</label>
+                <div class="col-sm-10">
+                    <asp:TextBox type="text" class="form-control" runat="server" placeholder="University Name" ID="university_name"></asp:TextBox>
+                </div>
+            </div>
 
 
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col">
-                                <center>
-                                    <h4>University</h4>
-                                   </center>
-                            </div>
-                        </div>
+            <div class="form-group row" style="margin-top: 5px; margin-bottom:10px">
+                <label class="col-sm-2 col-form-label">Location</label>
+                <div class="col-sm-10">
+                    <asp:TextBox type="text" class="form-control" runat="server" placeholder="Location" ID="location"></asp:TextBox>
+                </div>
+            </div>
 
-                        <div class="row">
-                            <div class="col">
-                                <center>
-                               <img id="imgview" Height="150px" Width="100px"  src="University_Images/university.png" />
-                            </center>
-                            </div>
-                        </div>
+            <div class="form-group row" style="margin-top: 5px; margin-bottom:10px">
+                <label class="col-sm-2 col-form-label">Description</label>
+                <div class="col-sm-10">
+                    <asp:TextBox type="text" class="form-control" runat="server" placeholder="Description" ID="description"></asp:TextBox>
+                </div>
+            </div>
 
-                        <div class="row">
-                            <div class="col">
-                                <hr />
-                            </div>
-                        </div>
+            <div class="form-group row" style="margin-top: 5px; margin-bottom:10px">
+                <label class="col-sm-2 col-form-label">Number of Students</label>
+                <div class="col-sm-10">
+                    <asp:TextBox type="text" class="form-control" runat="server" placeholder="Number of Students" ID="number_of_Students"></asp:TextBox>
+                </div>
+            </div>
 
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <center>
-                                        <label>University Name</label>
-                                        <asp:TextBox CssClass="form-control" runat="server" placeholder="University Name" ID="university_name"></asp:TextBox>
-                                    </center>
-                                </div>
-                            </div>
-                        </div>
+            <div class="form-group row" style="margin-top: 5px; margin-bottom:10px">
+                <label class="col-sm-2 col-form-label">University Image</label>
+                <div class="col-sm-10">
+                    <asp:FileUpload onchange="readURL(this);" class="form-control" ID="FileUpload1" runat="server"/>
+                </div>
+            </div>
 
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <center>
-                                        <label>Location</label>
-                                        <asp:TextBox CssClass="form-control" runat="server" placeholder="Location" ID="location"></asp:TextBox>
-                                    </center>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <center>
-                                        <label>Description</label>
-                                        <asp:TextBox CssClass="form-control" runat="server" placeholder="Description" ID="description"></asp:TextBox>
-                                    </center>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <center>
-                                        <label>Number of Students</label>
-                                        <asp:TextBox CssClass="form-control" runat="server" placeholder="Number of Students" ID="number_of_Students"></asp:TextBox>
-                                    </center>
-                                </div>
-                            </div>
-                        </div>
-
-                         <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <center>
-                                        <label>University Image</label>
-                                        <asp:FileUpload onchange="readURL(this);" class="form-control" ID="FileUpload1" runat="server"/>
-                                    </center>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <center>
-                                        <asp:Button class="btn btn-success btn-block btn-lg" ID="create_university_profile" runat="server" Text="Create University Profile" OnClick="create_university_profile_Click" />
-                                      </center>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
+            <div class="form-group row" style="margin-top:30px">
+                <div class="col-sm-10">
+                    <asp:Button class="btn btn-primary" ID="create_university_profile" runat="server" Text="Create" OnClick="create_university_profile_Click" />
                 </div>
             </div>
         </div>
     </div>
-
 </asp:Content>
