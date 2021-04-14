@@ -51,15 +51,6 @@ namespace college_event
         protected global::System.Web.UI.WebControls.LinkButton register;
 
         /// <summary>
-        /// logout control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton logout;
-
-        /// <summary>
         /// greetings control.
         /// </summary>
         /// <remarks>
@@ -67,6 +58,15 @@ namespace college_event
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton greetings;
+
+        /// <summary>
+        /// logout control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton logout;
 
         /// <summary>
         /// ContentPlaceHolder1 control.

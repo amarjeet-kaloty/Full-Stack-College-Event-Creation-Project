@@ -2,162 +2,103 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
     <div class="container">
         <div class="row">
-            <div class="col-md-8 mx-auto">
-
-
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col">
-                                <center>
-                                    <h4>Create Event</h4>
-                                   </center>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
-                                <center>
-                               <img id="imgview" Height="150px" Width="100px"  src="University_Images/university.png" />
-                            </center>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
-                                <hr />
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <center>
-                                        <label>Location</label>
-                                        <asp:Button class="btn btn-light btn-block btn-lg" ID="set_location" runat="server" Text="Set Location" OnClick="set_location_Click" />
-                                    </center>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <center>
-                                       <asp:Label runat="server" ID="Location" Text="Select Location"></asp:Label>
-                                    </center>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <center>
-                                        <label>Event Type</label>
-                                        <asp:TextBox runat="server" ID="event_type"></asp:TextBox>
-                                    </center>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <center>
-                                        <label>Category</label>
-                                        <asp:DropDownList ID="category" runat="server">
-                                            <asp:ListItem Value="Public">Public</asp:ListItem>
-                                            <asp:ListItem Value="Private">Private</asp:ListItem>
-                                            <asp:ListItem Value="RSO">RSO</asp:ListItem>
-                                        </asp:DropDownList>
-                                    </center>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <center>
-                                        <label>Description</label>
-                                        <asp:TextBox runat="server"  ID="description"></asp:TextBox>
-                                    </center>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <center>
-                                        <label>Start Time</label>
-                                        <asp:TextBox runat="server"  ID="start_time" format="HH:mm"></asp:TextBox>
-                                    </center>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <center>
-                                        <label>End Time</label>
-                                        <asp:TextBox runat="server"  ID="end_time" format="HH:mm"></asp:TextBox>
-                                    </center>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <center>
-                                        <label>Event Date</label>
-                                        <asp:TextBox  ID="date"  runat="server" TextMode="Date"></asp:TextBox>
-                                        
-                                    </center>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <center>
-                                        <label>Contact number</label>
-                                        <asp:TextBox runat="server"  ID="contact_number"></asp:TextBox>
-                                    </center>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <center>
-                                        <label>Contact email</label>
-                                        <asp:TextBox runat="server"  ID="contact_email"></asp:TextBox>
-                                    </center>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <center>
-                                        <asp:Button class="btn btn-success btn-block btn-lg" ID="create_event" runat="server" Text="Create Event" OnClick="create_event_Click" />
-                                      </center>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
+            <div class="col">
+                <h2 style="margin-top:10px; margin-bottom:30px; background-color:#566573; color:white; padding: 5px; text-align:center">Create Event</h2>
             </div>
         </div>
+
+        <div style="padding-left: 20%; padding-right:20% ">
+            <div class="form-group row" style="margin-top: 5px; margin-bottom:10px">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Category</label>
+                <div class="col-sm-10">
+                    <asp:DropDownList ID="category" runat="server" class="form-control">
+                        <asp:ListItem Value="Public">Public</asp:ListItem>
+                        <asp:ListItem Value="Private">Private</asp:ListItem>
+                        <asp:ListItem Value="RSO">RSO</asp:ListItem>
+                    </asp:DropDownList>
+                </div>
+            </div>
+
+
+            <div class="form-group row" style="margin-top: 5px; margin-bottom:10px">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Location</label>
+                <div class="col-sm-10">
+                    <asp:Button class="btn btn-outline-primary" ID="set_location" runat="server" Text="Set Location" OnClick="set_location_Click" />
+                </div>
+            </div>
+
+            <div class="form-group row" style="margin-top: 5px; margin-bottom:10px">
+                <label for="inputEmail3" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <asp:Label runat="server" ID="Location" class="text-muted" Text="No location is selected"></asp:Label>
+                </div>
+            </div>
+
+                        
+            <div class="form-group row" style="margin-top: 5px; margin-bottom:10px">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Event Date</label>
+                <div class="col-sm-10">
+                    <asp:TextBox  ID="date" class="form-control" runat="server" TextMode="Date"></asp:TextBox>
+                </div>
+            </div>
+
+
+
+
+            <div class="form-group row" style="margin-top: 5px; margin-bottom:10px">
+                <label class="col-sm-2 col-form-label">Event Type</label>
+                <div class="col-sm-10">
+                    <asp:TextBox runat="server" ID="event_type" type="text" class="form-control" placeholder="Event Type"></asp:TextBox>
+                </div>
+            </div>
+
+
+            <div class="form-group row" style="margin-top: 5px; margin-bottom:10px">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Description</label>
+                <div class="col-sm-10">
+                    <asp:TextBox runat="server"  ID="description" type="text" class="form-control" placeholder="Description"></asp:TextBox>
+                </div>
+            </div>
+
+
+            <div class="form-group row" style="margin-top: 5px; margin-bottom:10px">
+                <label class="col-sm-2 col-form-label">Start Time</label>
+                <div class="col-sm-10">
+                    <asp:TextBox runat="server"  ID="start_time" format="HH:mm" class="form-control" placeholder="Start Time"></asp:TextBox>
+                </div>
+            </div>
+
+
+            <div class="form-group row" style="margin-top: 5px; margin-bottom:10px">
+                <label class="col-sm-2 col-form-label">End Time</label>
+                <div class="col-sm-10">
+                    <asp:TextBox runat="server"  ID="end_time" format="HH:mm" class="form-control" placeholder="End Time"></asp:TextBox>
+                </div>
+            </div>
+
+
+            <div class="form-group row" style="margin-top: 5px; margin-bottom:10px">
+                <label class="col-sm-2 col-form-label">Contact number</label>
+                <div class="col-sm-10">
+                    <asp:TextBox runat="server"  ID="contact_number" type="text" class="form-control" placeholder="Contact number"></asp:TextBox>
+                </div>
+            </div>
+
+
+            <div class="form-group row" style="margin-top: 5px; margin-bottom:10px">
+                <label class="col-sm-2 col-form-label">Contact email</label>
+                <div class="col-sm-10">
+                    <asp:TextBox runat="server"  ID="contact_email" type="email" class="form-control" placeholder="Contact email"></asp:TextBox>
+                </div>
+            </div>
+
+            <div class="form-group row" style="margin-top:30px">
+                <div class="col-sm-10">
+                    <asp:Button class="btn btn-primary" ID="create_event" runat="server" Text="Create Event" OnClick="create_event_Click" />
+                </div>
+            </div>
+        </div>  
     </div>
 </asp:Content>

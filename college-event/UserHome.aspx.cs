@@ -186,7 +186,7 @@ namespace college_event
         {
             GridView_UniversityEvents.Visible = false;
             GridView_RSO.Visible = false;
-            label_join_rso.Visible = false;
+            //label_join_rso.Visible = false;
 
             // Events if user is a member of the RSO
             DataTable RSO_member_of = new DataTable();
