@@ -1,4 +1,5 @@
-﻿using System;
+﻿using college_event.Classes;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -39,6 +40,7 @@ namespace college_event
 
             // View Events in the University
             DataTable table_view_events = new DataTable();
+            DataTable eventsUCF = new DataTable();
 
             table_view_events.Columns.Add(new DataColumn("Event", typeof(string)));
             table_view_events.Columns.Add(new DataColumn("Category", typeof(string)));
@@ -51,8 +53,60 @@ namespace college_event
             table_view_events.Columns.Add(new DataColumn("Location", typeof(string)));
             table_view_events.Columns.Add(new DataColumn("Address", typeof(string)));
 
+            eventsUCF.Columns.Add(new DataColumn("Event", typeof(string)));
+            eventsUCF.Columns.Add(new DataColumn("Category", typeof(string)));
+            eventsUCF.Columns.Add(new DataColumn("Description", typeof(string)));
+            eventsUCF.Columns.Add(new DataColumn("Start", typeof(TimeSpan)));
+            eventsUCF.Columns.Add(new DataColumn("End", typeof(TimeSpan)));
+            eventsUCF.Columns.Add(new DataColumn("Date", typeof(string)));
+            eventsUCF.Columns.Add(new DataColumn("Location", typeof(string)));
+            eventsUCF.Columns.Add(new DataColumn("URL", typeof(string)));
+
             var qry_Events = (from temp in db.Events
                               select temp).Where(x => x.email.Contains(domain) && (x.eCategory == "Public" && x.status == false)).ToList();
+
+            EventStream todayES = new EventStream("https://events.ucf.edu/feed.xml");
+            EventStream upcomingES = new EventStream("https://events.ucf.edu/upcoming/feed.xml");
+
+            List<EventXML> todayList = todayES.getEvents();
+            List<EventXML> upcomingList = upcomingES.getEvents();
+            TimeSpan starting = new TimeSpan(9, 45, 0);
+            TimeSpan ending = new TimeSpan(12, 30, 0);
+
+            foreach (EventXML temp in todayList)
+            {
+                DataRow row = eventsUCF.NewRow();
+
+                row[0] = temp.title;
+                row[1] = "Public";
+                row[2] = temp.description;
+                row[3] = temp.startTime;
+                row[4] = temp.endTime;
+                row[5] = temp.startDate;
+                row[6] = temp.location;
+                row[7] = temp.url;
+
+                eventsUCF.Rows.Add(row);
+            }
+
+            foreach (EventXML temp in upcomingList)
+            {
+                DataRow row = eventsUCF.NewRow();
+
+                row[0] = temp.title;
+                row[1] = "Public";
+                row[2] = temp.description;
+                row[3] = temp.startTime;
+                row[4] = temp.endTime;
+                row[5] = temp.startDate;
+                row[6] = temp.location;
+                row[7] = temp.url;
+
+                eventsUCF.Rows.Add(row);
+            }
+
+            GridView_UniversityEvents0.DataSource = eventsUCF;
+            GridView_UniversityEvents0.DataBind();
 
             foreach (var value in qry_Events)
             {
@@ -349,6 +403,11 @@ namespace college_event
             //var a = rating_value;
             //add_comment.score = Convert.ToInt32(r.CurrentRating.ToString());
             //add_comment.timestamp = DateTime.Now;;
+        }
+
+        protected void GridView_UniversityEvents0_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
         // Star rating implementation

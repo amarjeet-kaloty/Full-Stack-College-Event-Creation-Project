@@ -24,6 +24,15 @@ namespace college_event
         protected global::System.Web.UI.WebControls.GridView GridView_UniversityEvents;
 
         /// <summary>
+        /// GridView_UniversityEvents0 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridView_UniversityEvents0;
+
+        /// <summary>
         /// GridView_RSO control.
         /// </summary>
         /// <remarks>

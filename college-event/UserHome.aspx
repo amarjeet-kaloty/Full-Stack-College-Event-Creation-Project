@@ -153,6 +153,82 @@
                             </asp:TemplateField>
                         </Columns>
                     </asp:GridView>
+
+        <asp:GridView ID="GridView_UniversityEvents0" class="table table-striped table-bordered" EmptyDataText="No Data Found"
+            ShowHeaderWhenEmpty="True" AutoGenerateColumns="False" runat="server">
+            <AlternatingRowStyle BackColor="#F7F7F7" />
+            <Columns>
+                <asp:TemplateField>
+                    <ItemTemplate>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-10">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <asp:Label ID="Label21" runat="server" Text='<%# Eval("Event") %>' Font-Bold="True" Font-Size="Large"></asp:Label>
+                                                Category - 
+                                            <asp:Label ID="Label22" runat="server" Font-Bold="True" Font-Size="Smaller" Text='<%# Eval("Category") %>'></asp:Label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            Date - 
+                                            <asp:Label ID="Label23" runat="server" Font-Bold="True" Font-Size="Smaller" Text='<%# Eval("Date") %>'></asp:Label>
+                                                &nbsp;| 
+                                                Start Time -
+                                            <asp:Label ID="Label24" runat="server" Font-Bold="True" Font-Size="Smaller" Text='<%# Eval("Start") %>'></asp:Label>
+                                                &nbsp;| 
+                                                End Time -
+                                            <asp:Label ID="Label25" runat="server" Font-Bold="True" Font-Size="Smaller" Text='<%# Eval("End") %>'></asp:Label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-12">
+                                            Description -
+                                            <asp:Label ID="Label28" runat="server" Font-Bold="True" Font-Italic="True" Font-Size="Smaller" Text='<%# Eval("Description") %>'></asp:Label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-12">
+                                            Location -
+                                            <asp:Label ID="Label30" runat="server" Font-Bold="True" Font-Size="Smaller" Text='<%# Eval("Location") %>'></asp:Label>
+                                            &nbsp;|
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-12">
+                                            URL -
+                                            <asp:Label ID="Label26" runat="server" Font-Bold="True" Font-Size="Smaller" Text='<%# Eval("URL") %>'></asp:Label>
+                                            &nbsp;|
+                                        </div>
+                                    </div>
+
+                                                <asp:TemplateField>
+                                                    <Itemtemplate>
+                                                        <div class="rating-star-block" id='rating_star0'> 
+                                                        <div class="yourScore">Your Score : </div>
+                                                            <a class="star outline" href="#" rating="1" title="vote 1"> vote 1</a>
+                                                            <a class="star outline" href="#" rating="2" title="vote 2"> vote 2</a>
+                                                            <a class="star outline" href="#" rating="3" title="vote 3"> vote 3</a>
+                                                            <a class="star outline" href="#" rating="4" title="vote 4"> vote 4</a>
+                                                            <a class="star outline" href="#" rating="5" title="vote 5"> vote 5</a>
+                                                        </div>
+                                                        <asp:TextBox ID="user_rating0" runat="server"></asp:TextBox>
+                                                    </Itemtemplate>
+                                                </asp:TemplateField>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>
+
                 </div>
             </div>
 
