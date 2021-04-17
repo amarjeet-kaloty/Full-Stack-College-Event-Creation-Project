@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -9,62 +12,58 @@ namespace college_event
 {
     public partial class Login : System.Web.UI.Page
     {
-        CollegeEventDataContext db = new CollegeEventDataContext();
+        // Connecting to the Database 
+        string strcon = ConfigurationManager.ConnectionStrings["college_eventConnectionString1"].ConnectionString;
 
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
 
-        // Login
+        // User Login
         protected void login_btn_Click(object sender, EventArgs e)
         {
-            var qryUserLogin = (from user in db.member_master_tbls
-                                where user.uid == uid.Text.Trim()
-                                select user).ToList();
-
-            foreach (member_master_tbl user in qryUserLogin)
+            try
             {
-                string id = user.uid;
-                string pwd = DecryptString(user.password);
-
-                if (id == uid.Text.Trim() && pwd == password.Text.Trim())
+                SqlConnection con = new SqlConnection(strcon);
+                if (con.State == ConnectionState.Closed)
                 {
-                    Response.Write("<script>alert('Login Successful.');</script>");
-                    Session["uid"] = user.uid;
-                    Session["name"] = user.name;
-                    Session["status"] = user.status;
-                    if(user.status == 1)
+                    con.Open();
+                }
+
+                string pwd = DecryptString(password.Text.Trim());
+
+                SqlCommand cmd = new SqlCommand("Select * From member_master_tbl Where uid='" + uid.Text.Trim() + "' AND password='" + pwd + "'", con);
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
                     {
-                        Response.Redirect("SuperAdminHome.aspx");
+                        Response.Write("<script>alert('Login Successful!');</script>");
+                        Session["uid"] = dr.GetValue(0).ToString();
+                        Session["name"] = dr.GetValue(1).ToString();
+                        Session["status"] = dr.GetValue(3).ToString();
                     }
-                    else if(user.status == 3)
-                    {
-                        Response.Redirect("UserHome.aspx");
-                    }
+                    Response.Redirect("UserHome.aspx");
                 }
                 else
                 {
-                    Response.Write("<script>alert('Login Credentials incorrect. Please try again.');</script>");
+                    Response.Write("<script>alert('Invalid credentials');</script>");
                 }
+                dr.Close();
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('" + ex.Message + "');</script>");
             }
         }
 
-        protected string DecryptString(string encrString)
+        public string DecryptString(string strEncrypted)
         {
-            byte[] b;
-            string decrypted;
-            try
-            {
-                b = Convert.FromBase64String(encrString);
-                decrypted = System.Text.ASCIIEncoding.ASCII.GetString(b);
-            }
-            catch (FormatException fe)
-            {
-                Response.Write("<script>alert('Unable to Decrypt the password.');</script>");
-                decrypted = "";
-            }
-            return decrypted;
+            byte[] b = System.Text.ASCIIEncoding.ASCII.GetBytes(strEncrypted);
+            string encrypted = Convert.ToBase64String(b);
+            return encrypted;
         }
+
     }
 }

@@ -30,12 +30,12 @@
 
             <div class="row" style="margin-top:20px">
                 <div class="col-md-2">
-                    <label style="color:#D5D8DC;  font-size:18px">UCF Email</label>
+                    <label style="color:#D5D8DC;  font-size:18px">College ID</label>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <center>
-                            <asp:TextBox CssClass="form-control" runat="server" placeholder="UCF Email" ID="uid"></asp:TextBox>
+                            <asp:TextBox CssClass="form-control" runat="server" ID="uid"></asp:TextBox>
                         </center>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                 <div class="col">
                     <div class="form-group">
                         <center>
-                            <asp:TextBox CssClass="form-control" runat="server" placeholder="Name" ID="name"></asp:TextBox>
+                            <asp:TextBox CssClass="form-control" runat="server" ID="name"></asp:TextBox>
                         </center>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                 <div class="col">
                     <div class="form-group">
                         <center>
-                            <asp:TextBox CssClass="form-control" runat="server" placeholder="Password" ID="password" TextMode="Password"></asp:TextBox>
+                            <asp:TextBox CssClass="form-control" runat="server" ID="password" TextMode="Password"></asp:TextBox>
                         </center>
                     </div>
                 </div>

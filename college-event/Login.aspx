@@ -28,7 +28,7 @@
 
         <div class="row" style="margin-top:20px">
             <div class="col-md-2">
-                <label style="color:#D5D8DC;  font-size:18px">Uid</label>
+                <label style="color:#D5D8DC;  font-size:18px">College ID</label>
             </div>
             <div class="col-md-10">
                 <div class="form-group">

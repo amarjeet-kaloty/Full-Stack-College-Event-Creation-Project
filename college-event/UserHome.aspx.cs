@@ -8,7 +8,6 @@ using System.Web.Script.Services;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using AjaxControlToolkit;
 
 namespace college_event
 {
@@ -28,14 +27,14 @@ namespace college_event
 
             parts = email.Split(new[] { '@' });
             username = parts[0];
-            domain = parts[1];                                               //  "knights.ucf.edu";                        // parts[1];
+            domain = "knights.ucf.edu";                                                //  "knights.ucf.edu";  // parts[1];
             if (!IsPostBack)
             {
-                Load_GridView();
+                public_button_onClick();
             }
         }
 
-        protected void Load_GridView()
+        protected void public_button_onClick()
         {
 
             // View Events in the University
@@ -53,7 +52,7 @@ namespace college_event
             table_view_events.Columns.Add(new DataColumn("Address", typeof(string)));
 
             var qry_Events = (from temp in db.Events
-                              select temp).Where(x => x.email.Contains(domain) && (x.eCategory == "Public" || x.eCategory == "Private")).ToList();
+                              select temp).Where(x => x.email.Contains(domain) && (x.eCategory == "Public" && x.status == false)).ToList();
 
             foreach (var value in qry_Events)
             {
@@ -86,7 +85,65 @@ namespace college_event
             }
             GridView_UniversityEvents.DataSource = table_view_events;
             GridView_UniversityEvents.DataBind();
+            Load_RSO();
+        }
 
+        protected void private_button_onClick(object sender, EventArgs e)
+        {
+
+            // View Events in the University
+            DataTable table_view_events = new DataTable();
+
+            table_view_events.Columns.Add(new DataColumn("Event", typeof(string)));
+            table_view_events.Columns.Add(new DataColumn("Category", typeof(string)));
+            table_view_events.Columns.Add(new DataColumn("Description", typeof(string)));
+            table_view_events.Columns.Add(new DataColumn("Start", typeof(TimeSpan)));
+            table_view_events.Columns.Add(new DataColumn("End", typeof(TimeSpan)));
+            table_view_events.Columns.Add(new DataColumn("Date", typeof(string)));
+            table_view_events.Columns.Add(new DataColumn("Contact", typeof(string)));
+            table_view_events.Columns.Add(new DataColumn("Email", typeof(string)));
+            table_view_events.Columns.Add(new DataColumn("Location", typeof(string)));
+            table_view_events.Columns.Add(new DataColumn("Address", typeof(string)));
+
+            var qry_Events = (from temp in db.Events
+                              select temp).Where(x => x.email.Contains(domain) && (x.eCategory == "Private" && x.status == false)).ToList();
+
+            foreach (var value in qry_Events)
+            {
+                string x = "";
+                string y = "";
+                var qry_event_no = (from eNum in db.set_event_locations
+                                    where eNum.event_no == value.event_no
+                                    select eNum).ToList();
+                foreach (var v in qry_event_no)
+                {
+                    x = v.location;
+                    y = v.address;
+                }
+
+                DataRow row = table_view_events.NewRow();
+                row[0] = value.eType;
+                row[1] = value.eCategory;
+                row[2] = value.eDescription;
+                row[3] = value.start;
+                row[4] = value.end;
+                string dt = value.date.ToString();
+                string[] split_date = dt.Split(' ');
+                row[5] = split_date[0];
+                row[6] = value.contact;
+                row[7] = value.email;
+                event_N.Add(value.event_no.ToString());
+                row[8] = x;
+                row[9] = y;
+                table_view_events.Rows.Add(row);
+            }
+            GridView_UniversityEvents.DataSource = table_view_events;
+            GridView_UniversityEvents.DataBind();
+            Load_RSO();
+        }
+
+        protected void Load_RSO()
+        {
             // RSO GridView
             DataTable table_joinRSO = new DataTable();
 
@@ -109,8 +166,6 @@ namespace college_event
             }
             GridView_RSO.DataSource = table_joinRSO;
             GridView_RSO.DataBind();
-
-
         }
 
         //
@@ -178,8 +233,25 @@ namespace college_event
             RSO qry_assignAdmin = db.RSOs.Single(x => x.college_id == Convert.ToInt32(choosen_college_id));
             qry_assignAdmin.group_administrator = true;
             db.SubmitChanges();
-            
+        }
 
+        // Adding new member to RSO
+        protected void Exit_Click(object sender, EventArgs e)
+        {
+            GridViewRow clickedRow = ((Button)sender).NamingContainer as GridViewRow;
+            var organisation_name = clickedRow.Cells[1].Text;
+
+            RSO rso = db.RSOs.Single(x => x.organisation_name == organisation_name && 
+                                          Session["uid"].ToString() == x.email);
+            try
+            {
+                db.RSOs.DeleteOnSubmit(rso);
+                db.SubmitChanges();
+            }
+            catch (Exception)
+            {
+                Response.Write("<script>alert('An Error Occured. Please try again.');</script>");
+            }
         }
 
         protected void view_events_by_rso_Click(object sender, EventArgs e)
@@ -256,10 +328,10 @@ namespace college_event
             Response.Redirect("CreateEventPage.aspx");
         }
 
-        protected void OnRatingChanged(object sender, RatingEventArgs e)
-        {
-            rating_value = e.Value;
-        }
+        //protected void OnRatingChanged(object sender, RatingEventArgs e)
+        //{
+        //    rating_value = e.Value;
+        //}
 
         // Comments from event
         protected void btn_submit_Click(object sender, EventArgs e)

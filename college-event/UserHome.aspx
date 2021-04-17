@@ -1,7 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="UserHome.aspx.cs" Inherits="college_event.UserHome" %>
 
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script language="javascript" type="text/javascript">
         $(document).ready(function () {
@@ -69,6 +67,13 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
         <h2 style="margin-top:50px; background-color:#566573; color:white; padding: 5px">Events Summary</h2>
+        
+        <div class="btn-group" role="group" aria-label="Basic outlined example">
+          <button type="button" class="btn btn-outline-secondary">Public</button>
+          <button type="button" class="btn btn-outline-secondary" OnClick="private_button_onClick">Private</button>
+          <button type="button" class="btn btn-outline-secondary">RSO</button>
+        </div>
+
         <asp:GridView ID="GridView_UniversityEvents" class="table table-striped table-bordered" EmptyDataText="No Data Found"
             ShowHeaderWhenEmpty="True" AutoGenerateColumns="False" runat="server">
             <AlternatingRowStyle BackColor="#F7F7F7" />
@@ -174,6 +179,12 @@
                     <asp:TemplateField>
                         <ItemTemplate>
                             <asp:Button ID="join_RSO" CssClass="btn btn-outline-primary btn-sm" runat="server" Text="Join" OnClick="Join_Click" data-myData='<%# Eval("RSO") %>'></asp:Button>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
+                     <asp:TemplateField>
+                        <ItemTemplate>
+                            <asp:Button ID="exit_RSO" CssClass="btn btn-outline-danger btn-sm" runat="server" Text="Exit" OnClick="Exit_Click" data-myData='<%# Eval("RSO") %>'></asp:Button>
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>

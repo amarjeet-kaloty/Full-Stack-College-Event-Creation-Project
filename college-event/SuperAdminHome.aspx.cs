@@ -22,7 +22,7 @@ namespace college_event
 
             parts = email.Split(new[] { '@' });
             username = parts[0];
-            domain = "knights.ucf.edu";              // parts[1];
+            domain = parts[1];
             if (!IsPostBack)
             {
                 LoadGridView();
