@@ -141,10 +141,11 @@
                                                             <a class="star outline" href="#" rating="4" title="vote 4"> vote 4</a>
                                                             <a class="star outline" href="#" rating="5" title="vote 5"> vote 5</a>
                                                         </div>
-                                                        <asp:TextBox ID="user_rating" runat="server"></asp:TextBox>
+                                                        Comments -
+                                                        <asp:TextBox CssClass="form-control" ID="user_comments" runat="server"></asp:TextBox>
+                                                        <asp:Button runat="server" Text="Submit" OnClick="btn_submit_Click"></asp:Button>
                                                     </Itemtemplate>
                                                 </asp:TemplateField>
-
                                             </div>
                                         </div>
                                     </div>
@@ -157,18 +158,8 @@
             </div>
 
 
-
-
-
-
-
-
-
         <h2 style="margin-top:50px; background-color:#566573; color:white; padding: 5px">RSO</h2>
         <div class="row" style="margin-top: 10px">
-<%--            <div>
-                <asp:Label id="label_join_rso" runat="server" Text="Join a RSO"></asp:Label>
-            </div>--%>
             <asp:GridView ID="GridView_RSO" runat="server" GridLines="Both" BorderStyle="Solid" BorderWidth="1px" CellPadding="10"
                 CssClass="table-bordered" EmptyDataText="No Data Found" ShowHeaderWhenEmpty="True" Font-Size="small"
                 ForeColor="#1B2631" HorizontalAlign="Left" Font-Bold="False">
@@ -275,108 +266,3 @@
         </div>
     </div>
 </asp:Content>
-
-
-<%--   <div class="col-md-12">
-                <div class="row" style="margin-top: 20px">
-                    <div>
-                        <h3>View Events from your RSO</h3>
-                    </div>
-                    <asp:GridView ID="GridView_RSO_user_follows" runat="server" GridLines="Both" BorderStyle="Solid" BorderWidth="3px" CellPadding="15"
-                        CssClass="table-bordered" EmptyDataText="No Data Found" ShowHeaderWhenEmpty="False" Font-Size="Medium"
-                        ForeColor="Black" HorizontalAlign="Left" Font-Bold="True">
-                        <alternatingrowstyle backcolor="#F7F7F7" />
-                        <headerstyle backcolor="#383838" borderstyle="Solid" font-bold="True" font-size="Larger" forecolor="White" horizontalalign="Center" />
-                        <rowstyle borderstyle="Solid" verticalalign="Middle" horizontalalign="Center" />
-                    </asp:GridView>
-                </div>
-            </div>--%>
-
-<%--<div class="col-md-12">
-                <div class="row">
-                    <div>
-                        <h3>User University Events</h3>
-                    </div>
-                    <asp:GridView ID="GridView_UniversityEvents" runat="server" GridLines="Both" BorderStyle="Solid" BorderWidth="3px" CellPadding="15"
-                        CssClass="table-bordered" EmptyDataText="No Data Found" ShowHeaderWhenEmpty="True" Font-Size="Medium"
-                        ForeColor="Black" HorizontalAlign="Left" Font-Bold="True">
-                        <alternatingrowstyle backcolor="#F7F7F7" />
-                        <headerstyle backcolor="#383838" borderstyle="Solid" font-bold="True" font-size="Larger" forecolor="White" horizontalalign="Center" />
-                        <rowstyle borderstyle="Solid" verticalalign="Middle" horizontalalign="Center" />
-                    </asp:GridView>
-                </div>
-            </div>--%>
-
-<%--<div class="row">
-                                                    <div class="col-12">
-                                                         <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
-                                                            </asp:ToolkitScriptManager>
-                                                        <asp:Rating ID="Rating" runat="server" AutoPostBack="true"  OnChanged="OnRatingChanged"
-                                                            StarCssClass="Star" WaitingStarCssClass="WaitingStar" EmptyStarCssClass="Star"
-                                                            FilledStarCssClass="FilledStar">
-                                                        </asp:Rating>
-                                                        <asp:TextBox runat="server" CssClass="form-control" ID="user_comments" TextMode="MultiLine"></asp:TextBox>
-                                                        <br />
-                                                        <asp:Button runat="server" class="btn btn-success btn-block" Text="Submit" ID="btn_submit" OnClick="btn_submit_Click" />
-                                                    </div>
-                                                </div>--%>
-
-<%-- <style type="text/css">
-        .Star {
-            background-image: url(Images/Star.png);
-            background-repeat: no-repeat;
-            height: 24px;
-            width: 24px;
-            background-size: 100%;
-        }
-
-        .WaitingStar {
-            background-image: url(Images/WaitingStar.png);
-            background-repeat: no-repeat;
-            height: 24px;
-            width: 24px;
-            background-size: 100%;
-        }
-
-        .FilledStar {
-            background-image: url(Images/FilledStar.png);
-            background-repeat: no-repeat;
-            height: 24px;
-            width: 24px;
-            background-size: 100%;
-        }
-    </style>--%>
-
-<%--//$(".rating-star-block .star").click(function () {
-                
-            //    var v = $(this).attr('rating');
-            //    var newScore = 0;
-            //    var updateP = "#" + $(this).parent().attr('id') + ' .CurrentScore';
-            //    var artID = $("#" + $(this).parent().attr('id') + ' .articleID').val();
-                
-            //    $("#" + $(this).parent().attr('id') + " .star").hide();
-            //    $("#" + $(this).parent().attr('id') + " .yourScore").html("Your Score is : &nbsp;<b style='color:#ff9900; font-size:15px'>" + v + "</b>");
-            //    $.ajax({
-            //        type: "POST",
-            //        url: "Default.aspx/SaveRating",
-            //        data: "{articleID: '" + artID + "',rate: '" + v + "'}",
-            //        contentType: "application/json; charset=utf-8",
-            //        dataType: "json",
-            //        success: function (data) {
-            //            setNewScore(updateP, data.d);
-            //        },
-            //        error: function (data) {
-            //            alert(data.d);
-            //        }
-            //    });
-            //});--%>
-
-<%--//function setNewScore(container, data) {
-        //    $(container).html(data);
-        //    $("#myElem").show('1000').delay(2000).queue(function (n) {
-        //        $(this).hide(); n();
-        //    });
-        //}--%>
-
-<%-- <input type="hidden" class="articleID" value='<%#Eval("ArticleID") %>' />
-    Current Score :<span class="CurrentScore"><%#Eval("Score") %></span><br /><div class="yourScore">Your Score : </div>--%>

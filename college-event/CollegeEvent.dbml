@@ -6,6 +6,9 @@
       <Column Name="name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="password" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="member_master_tbl_Event" Member="Events" ThisKey="uid" OtherKey="email" Type="Event" />
+      <Association Name="member_master_tbl_RSO" Member="RSOs" ThisKey="uid" OtherKey="email" Type="RSO" />
+      <Association Name="member_master_tbl_Comment" Member="Comments" ThisKey="uid" OtherKey="uid" Type="Comment" />
     </Type>
   </Table>
   <Table Name="dbo.set_event_location" Member="set_event_locations">
@@ -35,22 +38,7 @@
       <Column Name="email" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="group_administrator" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="creator" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Comments" Member="Comments">
-    <Type Name="Comment">
-      <Column Name="Score_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="uid" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
-      <Column Name="score" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="timestamp" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="text" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="event_id" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.test_score" Member="test_scores">
-    <Type Name="test_score">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="score" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="member_master_tbl_RSO" Member="member_master_tbl" ThisKey="email" OtherKey="uid" Type="member_master_tbl" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Events" Member="Events">
@@ -66,7 +54,21 @@
       <Column Name="email" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="event_no" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Event_Comment" Member="Comments" ThisKey="event_no" OtherKey="event_id" Type="Comment" />
       <Association Name="set_event_location_Event" Member="set_event_location" ThisKey="event_no" OtherKey="event_no" Type="set_event_location" IsForeignKey="true" />
+      <Association Name="member_master_tbl_Event" Member="member_master_tbl" ThisKey="email" OtherKey="uid" Type="member_master_tbl" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Comments" Member="Comments">
+    <Type Name="Comment">
+      <Column Name="Score_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="uid" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="score" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timestamp" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="text" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="event_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="member_master_tbl_Comment" Member="member_master_tbl" ThisKey="uid" OtherKey="uid" Type="member_master_tbl" IsForeignKey="true" />
+      <Association Name="Event_Comment" Member="Event" ThisKey="event_id" OtherKey="event_no" Type="Event" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
