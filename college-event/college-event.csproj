@@ -1727,6 +1727,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Comments.cs" />
+    <Compile Include="Classes\EventStream.cs" />
     <Compile Include="CollegeEvent.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
