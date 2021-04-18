@@ -39,6 +39,7 @@ namespace college_event
             // View Events in the University
             DataTable table_view_events = new DataTable();
             DataTable eventsUCF = new DataTable();
+            int i = 0;
 
             table_view_events.Columns.Add(new DataColumn("Event", typeof(string)));
             table_view_events.Columns.Add(new DataColumn("Category", typeof(string)));

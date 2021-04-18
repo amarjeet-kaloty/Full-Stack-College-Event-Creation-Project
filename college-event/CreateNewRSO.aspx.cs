@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -9,7 +12,8 @@ namespace college_event
 {
     public partial class CreateNewRSO : System.Web.UI.Page
     {
-        CollegeEventDataContext db = new CollegeEventDataContext();
+        // Connecting to the Database 
+        string strcon = ConfigurationManager.ConnectionStrings["college_eventConnectionString1"].ConnectionString;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -19,22 +23,30 @@ namespace college_event
         // Request to Create a New RSO
         protected void create_RSO_Click(object sender, EventArgs e)
         {
-            var createRSO = new RSO();
-            createRSO.college_id = Convert.ToInt32(college_id.Text.ToString());
-            createRSO.organisation_name = org_name.Text.ToString();
-            createRSO.group_member = name.Text.ToString();
-            createRSO.email = email.Text.ToString();
-            createRSO.group_administrator = false;
-            createRSO.creator = true;
             try
             {
-                db.RSOs.InsertOnSubmit(createRSO);
-                db.SubmitChanges();
-                Response.Write("<script>alert('New RSO group created successfully');</script>");
+                SqlConnection con = new SqlConnection(strcon);
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+                }
+
+                SqlCommand cmd = new SqlCommand("INSERT INTO RSO(college_id, organisation_name, group_member, email, group_administrator, creator) values(" +
+                    "@college_id, @organisation_name, @group_member, @email, @group_administrator, @creator)", con);
+
+                cmd.Parameters.AddWithValue("@college_id", college_id.Text.Trim());
+                cmd.Parameters.AddWithValue("@organisation_name", org_name.Text.Trim());
+                cmd.Parameters.AddWithValue("@group_member", name.Text.Trim());
+                cmd.Parameters.AddWithValue("@email", email.Text.Trim());
+                cmd.Parameters.AddWithValue("@group_administrator", false);
+                cmd.Parameters.AddWithValue("@creator", true);
+                cmd.ExecuteNonQuery();
+                con.Close();
+                Response.Write("<script>alert('RSO created successfully.');</script>");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Response.Write("<script>alert('An Error Occured. Please try again.');</script>");
+                Response.Write("<script>alert('" + ex.Message + "');</script>");
             }
         }
     }
