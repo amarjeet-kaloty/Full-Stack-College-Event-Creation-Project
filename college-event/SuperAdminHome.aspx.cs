@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,6 +13,7 @@ namespace college_event
     public partial class SuperAdminHome : System.Web.UI.Page
     {
         CollegeEventDataContext db = new CollegeEventDataContext();
+        string strcon = ConfigurationManager.ConnectionStrings["college_eventConnectionString1"].ConnectionString;
         string[] parts;
         string username;
         string domain;
@@ -29,6 +32,7 @@ namespace college_event
             }
         }
 
+
         protected void LoadGridView()
         {
             // View Events in the University
@@ -45,59 +49,87 @@ namespace college_event
             table_view_events.Columns.Add(new DataColumn("Email", typeof(string)));
             table_view_events.Columns.Add(new DataColumn("Location", typeof(string)));
             table_view_events.Columns.Add(new DataColumn("Address", typeof(string)));
-            //table_view_events.Columns.Add(new DataColumn("Event No.", typeof(string)));
 
-            var qry_Events = (from temp in db.Events
-                              where temp.status == true 
-                              select temp).ToList();
-            var i = 0;
-            foreach (var value in qry_Events)
+            SqlConnection con = new SqlConnection(strcon);
+            if (con.State == ConnectionState.Closed)
             {
-                //event_N = value.event_no;
-                string x = "";
-                string y = "";
-                var qry_event_no = (from eNum in db.set_event_locations
-                                    where eNum.event_no == value.event_no
-                                    select eNum).ToList();
-
-                foreach (var v in qry_event_no)
-                {
-                    x = v.location;
-                    y = v.address;
-                }
-                
-                DataRow row = table_view_events.NewRow();
-                row[0] = value.eType;
-                row[1] = value.eCategory;
-                row[2] = value.eDescription;
-                row[3] = value.start;
-                row[4] = value.end;
-                string dt = value.date.ToString();
-                string[] split_date = dt.Split(' ');
-                row[5] = split_date[0];
-                row[6] = value.contact;
-                row[7] = value.email;
-                row[8] = x;
-                row[9] = y;
-                ViewState[i.ToString()] = value.event_no;
-                i++;
-                table_view_events.Rows.Add(row);
+                con.Open();
             }
+
+            SqlCommand cmd = new SqlCommand("SELECT * FROM [Events] WHERE status = 1 AND email = @email;", con);
+            cmd.Parameters.AddWithValue("@email", Session["uid"].ToString().Split('@')[1]);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.HasRows)
+            {
+                while (dr.Read())
+                {
+                    DataRow row = table_view_events.NewRow();
+                    string x = "";
+                    string y = "";
+                    var qry_event_no = (from eNum in db.set_event_locations
+                                        where eNum.event_no == Int32.Parse(dr.GetValue(9).ToString())
+                                        select eNum).ToList();
+
+                    foreach (var v in qry_event_no)
+                    {
+                        x = v.location;
+                        y = v.address;
+                    }
+                    row[0] = dr.GetValue(1).ToString();
+                    row[1] = dr.GetValue(2).ToString();
+                    Session["edesc"] = dr.GetValue(3).ToString();
+                    row[2] = dr.GetValue(3).ToString();
+                    row[3] = TimeSpan.Parse(dr.GetValue(4).ToString());
+                    row[4] = TimeSpan.Parse(dr.GetValue(5).ToString());
+                    row[5] = dr.GetValue(6).ToString();
+                    row[6] = dr.GetValue(7).ToString();
+                    row[7] = dr.GetValue(8).ToString();
+                    row[8] = x;
+                    row[9] = y;
+
+                    table_view_events.Rows.Add(row);
+                }
+            }
+
             GridView_ApproveEvent.DataSource = table_view_events;
             GridView_ApproveEvent.DataBind();
+            dr.Close();
+            con.Close();
         }
 
         // Update Status of the event from pending to approved.
         protected void btn_click_approve(object sender, EventArgs e)
         {
-            GridViewRow clickedRow = ((Button)sender).NamingContainer as GridViewRow;
-            var x = clickedRow.RowIndex;
-            string u = x.ToString();
-            int event_no = Convert.ToInt32(ViewState[u]);
-            Event evt = db.Events.Single(a => a.event_no == event_no);
-            evt.status = false;
-            db.SubmitChanges();
+
+            SqlConnection con = new SqlConnection(strcon);
+            if (con.State == ConnectionState.Closed)
+            {
+                con.Open();
+            }
+
+            SqlCommand cmd = new SqlCommand("UPDATE [Events] SET [status] = 0 WHERE eDescription = @edesc;", con);
+            String sdfa = Session["edesc"].ToString();
+            cmd.Parameters.AddWithValue("@edesc", Session["edesc"].ToString());
+            cmd.ExecuteNonQuery();
+            con.Close();
+
+
+
+            //GridViewRow clickedRow = (((Button)sender).NamingContainer) as GridViewRow;
+            //int x = clickedRow.RowIndex;
+            ////String edesc =  GridView_ApproveEvent.Rows[x].Cells[2].ToString();
+            //string u = x.ToString();
+            //int event_no = Convert.ToInt32(ViewState[u]);
+            //Event evt = db.Events.Single(a => a.event_no == event_no);
+            //evt.status = false;
+            //db.SubmitChanges();
             LoadGridView();
+        }
+
+        protected void GridView_ApproveEvent_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -37,9 +37,32 @@ namespace college_event
             {
                 SqlConnection con = new SqlConnection(strcon);
                 con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM RSO", con);
+
+                // Get Uni_ID for the university
+                SqlCommand cmd = new SqlCommand("SELECT Uni_ID FROM university_profile WHERE emailExtension = @email;", con);
+                String[] extensionEmail = Session["uid"].ToString().Split('@');
+                cmd.Parameters.AddWithValue("@email", extensionEmail[1]);
+
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 SqlDataReader dr = cmd.ExecuteReader();
+
+                int Uni_ID = 0;
+
+                if (dr.HasRows)
+                {
+                    if (dr.Read())
+                    {
+                        Uni_ID = Int32.Parse(dr.GetValue(0).ToString());
+                    }
+                }
+                dr.Close();
+
+
+
+                cmd = new SqlCommand("SELECT DISTINCT * FROM RSO INNER JOIN university_profile up ON RSO.Uni_ID = @uni AND up.Uni_ID = @uni;", con);
+                cmd.Parameters.AddWithValue("@uni", Uni_ID);
+                da = new SqlDataAdapter(cmd);
+                dr = cmd.ExecuteReader();
 
                 if (dr.HasRows)
                 {
@@ -75,6 +98,7 @@ namespace college_event
 
             try
             {
+                int mem_id = 0;
                 int RSO_ID = -1;
                 SqlConnection con = new SqlConnection(strcon);
                 SqlCommand cmd;
@@ -100,6 +124,12 @@ namespace college_event
                         return;
                     }
 
+                    
+                    if (dr.Read())
+                    {
+                        mem_id = Int32.Parse(dr.GetValue(4).ToString());
+                    }
+
                     dr.Close();
                 }
 
@@ -108,8 +138,8 @@ namespace college_event
 
 
                 // Let admins and Events being created without RSO insert into Events table
-                cmd = new SqlCommand("INSERT INTO Events([eType], [eCategory], [eDescription], [start], [end], [date], [contact], [email], [event_no], [status], [RSO_ID])" + 
-                    " values(@type, @cat, @desc, @start, @end, @date, @contact, @email, @event_no, @status, @rso_id);", con);
+                cmd = new SqlCommand("INSERT INTO Events([eType], [eCategory], [eDescription], [start], [end], [date], [contact], [email], [event_no], [status], [RSO_ID], [Mem_ID])" + 
+                    " values(@type, @cat, @desc, @start, @end, @date, @contact, @email, @event_no, @status, @rso_id, @mem_id);", con);
 
                 // Parse user inputs
                 cmd.Parameters.AddWithValue("@type", event_type.Text.Trim());
@@ -129,8 +159,9 @@ namespace college_event
                 cmd.Parameters.AddWithValue("@date", DateTime.Parse(y.Date.ToShortDateString()));
 
                 cmd.Parameters.AddWithValue("@contact", contact_number.Text.ToString());
-                cmd.Parameters.AddWithValue("@email", contact_email.Text.ToString());
+                cmd.Parameters.AddWithValue("@email", contact_email.Text.ToString().Split('@')[1]);
                 cmd.Parameters.AddWithValue("@event_no", Convert.ToInt32(event_id));
+                cmd.Parameters.AddWithValue("@mem_id", mem_id);
 
                 // Check if user selected a specific RSO
                 if (!DropDownList1.SelectedValue.Equals("-1"))
@@ -141,7 +172,7 @@ namespace college_event
                 else
                 {
                     cmd.Parameters.AddWithValue("@status", 1);
-                    cmd.Parameters.AddWithValue("@rso_id", -1);
+                    cmd.Parameters.AddWithValue("@rso_id", 0);
                 }
 
                 cmd.ExecuteNonQuery();

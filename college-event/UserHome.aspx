@@ -70,10 +70,10 @@
         
         <asp:Button ID="public_button" runat="server" OnClick="public_button_Click" Text="Public" />
         <asp:Button ID="private_button" runat="server" OnClick="private_button_Click" Text="Private" />
-        <asp:Button ID="rso_button" runat="server" Text="RSO" />
+        <asp:Button ID="rso_button" runat="server" Text="RSO" OnClick="rso_button_Click" />
 
         <asp:GridView ID="GridView_UniversityEvents" class="table table-striped table-bordered" EmptyDataText="No Data Found"
-            ShowHeaderWhenEmpty="True" AutoGenerateColumns="False" runat="server">
+            ShowHeaderWhenEmpty="True" AutoGenerateColumns="False" runat="server" OnSelectedIndexChanged="GridView_UniversityEvents_SelectedIndexChanged">
             <AlternatingRowStyle BackColor="#F7F7F7" />
             <Columns>
                 <asp:TemplateField>
@@ -144,6 +144,8 @@
                                                         <asp:Button runat="server" Text="Submit" OnClick="btn_submit_Click"></asp:Button>
                                                     </Itemtemplate>
                                                 </asp:TemplateField>
+                                                
+                                                <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
                                             </div>
                                         </div>
                                     </div>
@@ -215,9 +217,14 @@
                                                             <a class="star outline" href="#" rating="4" title="vote 4"> vote 4</a>
                                                             <a class="star outline" href="#" rating="5" title="vote 5"> vote 5</a>
                                                         </div>
-                                                        <asp:TextBox ID="user_rating0" runat="server"></asp:TextBox>
+                                                        Comments -
+                                                        <asp:TextBox CssClass="form-control" ID="user_comments" runat="server"></asp:TextBox>
+                                                        <asp:Button runat="server" Text="Submit" OnClick="btn_submit_Click"></asp:Button>
                                                     </Itemtemplate>
                                                 </asp:TemplateField>
+                                                <div id="fb-root"></div>
+                                                <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v10.0" nonce="u1PIWRxZ"></script>
+                                                <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
 
                                             </div>
                                         </div>
@@ -326,7 +333,9 @@
                                 </div>
 
                             </ItemTemplate>
+
                         </asp:TemplateField>
+
                     </Columns>
                 </asp:GridView>
             </div>

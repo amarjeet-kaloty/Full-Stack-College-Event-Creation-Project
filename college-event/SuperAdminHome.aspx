@@ -9,7 +9,7 @@
   <div class="row">
                 <div class="col">
                     <asp:GridView ID="GridView_ApproveEvent" class="table table-striped table-bordered" EmptyDataText="No Data Found"
-                        ShowHeaderWhenEmpty="True" AutoGenerateColumns="False" runat="server">
+                        ShowHeaderWhenEmpty="True" AutoGenerateColumns="False" runat="server" OnSelectedIndexChanged="GridView_ApproveEvent_SelectedIndexChanged">
                         <alternatingrowstyle backcolor="#F7F7F7" />
                         <headerstyle backcolor="#383838" />
                         <columns>
