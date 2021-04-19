@@ -68,11 +68,9 @@
     <div class="container">
         <h2 style="margin-top:50px; background-color:#566573; color:white; padding: 5px">Events Summary</h2>
         
-        <div class="btn-group" role="group" aria-label="Basic outlined example">
-          <button type="button" class="btn btn-outline-secondary">Public</button>
-          <button type="button" class="btn btn-outline-secondary" OnClick="private_button_onClick">Private</button>
-          <button type="button" class="btn btn-outline-secondary">RSO</button>
-        </div>
+        <asp:Button ID="public_button" runat="server" OnClick="public_button_Click" Text="Public" />
+        <asp:Button ID="private_button" runat="server" OnClick="private_button_Click" Text="Private" />
+        <asp:Button ID="rso_button" runat="server" Text="RSO" />
 
         <asp:GridView ID="GridView_UniversityEvents" class="table table-striped table-bordered" EmptyDataText="No Data Found"
             ShowHeaderWhenEmpty="True" AutoGenerateColumns="False" runat="server">
@@ -230,6 +228,8 @@
                         </Columns>
                     </asp:GridView>
 
+                <asp:Button ID="Create_Event_Button" runat="server" OnClick="Create_Event_Button_Click" Text="Create Event" />
+
                 </div>
             </div>
 
@@ -337,7 +337,7 @@
                 <asp:Button ID="Button1" CssClass="btn btn-primary btn-sml" runat="server" Text="Create RSO" OnClick="create_RSO_Click" />
             </div>
             <div class="col-md-2">
-                <asp:Button ID="Button4" CssClass="btn btn-primary btn-sml" runat="server" Text="Create University Profile" Visible="true" />
+                <asp:Button ID="Button4" CssClass="btn btn-primary btn-sml" runat="server" Text="Create University Profile" Visible="true" OnClick="Button4_Click" />
             </div>
         </div>
     </div>

@@ -33,24 +33,32 @@ namespace college_event
 
                 string pwd = DecryptString(password.Text.Trim());
 
+                // Get the user from table
                 SqlCommand cmd = new SqlCommand("Select * From member_master_tbl Where uid='" + uid.Text.Trim() + "' AND password='" + pwd + "'", con);
                 SqlDataReader dr = cmd.ExecuteReader();
                 if (dr.HasRows)
                 {
                     while (dr.Read())
                     {
+                        // Create cookie stuff for user
                         Response.Write("<script>alert('Login Successful!');</script>");
                         Session["uid"] = dr.GetValue(0).ToString();
                         Session["name"] = dr.GetValue(1).ToString();
                         Session["status"] = dr.GetValue(3).ToString();
                     }
-                    Response.Redirect("UserHome.aspx");
+                    if (Int32.Parse(Session["status"].ToString()) == 1)
+                        Response.Redirect("SuperAdminHome.aspx");
+                    else if (Int32.Parse(Session["status"].ToString()) == 3)
+                        Response.Redirect("UserHome.aspx", false);
+                    else
+                        Response.Redirect("UserHome.aspx", false);
                 }
                 else
                 {
                     Response.Write("<script>alert('Invalid credentials');</script>");
                 }
                 dr.Close();
+                con.Close();
             }
             catch (Exception ex)
             {

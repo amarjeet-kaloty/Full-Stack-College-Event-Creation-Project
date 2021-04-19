@@ -1,7 +1,9 @@
 ﻿using college_event.Classes;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -18,6 +20,7 @@ namespace college_event
         string[] parts;
         string username;
         string domain;
+        string strcon = ConfigurationManager.ConnectionStrings["college_eventConnectionString1"].ConnectionString;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -31,6 +34,10 @@ namespace college_event
             {
                 public_button_onClick();
             }
+            else
+            {
+                
+            }
         }
 
         protected void public_button_onClick()
@@ -41,6 +48,7 @@ namespace college_event
             DataTable eventsUCF = new DataTable();
             int i = 0;
 
+            // Create tables
             table_view_events.Columns.Add(new DataColumn("Event", typeof(string)));
             table_view_events.Columns.Add(new DataColumn("Category", typeof(string)));
             table_view_events.Columns.Add(new DataColumn("Description", typeof(string)));
@@ -61,51 +69,59 @@ namespace college_event
             eventsUCF.Columns.Add(new DataColumn("Location", typeof(string)));
             eventsUCF.Columns.Add(new DataColumn("URL", typeof(string)));
 
+            // SOMETHING ABOUT PUBLIC EVENT FILTER
             var qry_Events = (from temp in db.Events
                               select temp).Where(x => x.email.Contains(domain) && (x.eCategory == "Public" && x.status == false)).ToList();
 
+            // Create event stream objects for 2 webpages
             EventStream todayES = new EventStream("https://events.ucf.edu/feed.xml");
             EventStream upcomingES = new EventStream("https://events.ucf.edu/upcoming/feed.xml");
+            String[] email = Session["uid"].ToString().Split('@');
 
-            List<EventXML> todayList = todayES.getEvents();
-            List<EventXML> upcomingList = upcomingES.getEvents();
-            TimeSpan starting = new TimeSpan(9, 45, 0);
-            TimeSpan ending = new TimeSpan(12, 30, 0);
-
-            foreach (EventXML temp in todayList)
+            // Check if student belongs to UCF
+            if (email[1].Equals("knights.ucf.edu"))
             {
-                DataRow row = eventsUCF.NewRow();
+                // Invoke getEvents()
+                List<EventXML> todayList = todayES.getEvents();
+                List<EventXML> upcomingList = upcomingES.getEvents();
 
-                row[0] = temp.title;
-                row[1] = "Public";
-                row[2] = temp.description;
-                row[3] = temp.startTime;
-                row[4] = temp.endTime;
-                row[5] = temp.startDate;
-                row[6] = temp.location;
-                row[7] = temp.url;
+                foreach (EventXML temp in todayList)
+                {
+                    // Parse every event and add row into the table
+                    DataRow row = eventsUCF.NewRow();
 
-                eventsUCF.Rows.Add(row);
+                    row[0] = temp.title;
+                    row[1] = "Public";
+                    row[2] = temp.description;
+                    row[3] = temp.startTime;
+                    row[4] = temp.endTime;
+                    row[5] = temp.startDate;
+                    row[6] = temp.location;
+                    row[7] = temp.url;
+
+                    eventsUCF.Rows.Add(row);
+                }
+
+                foreach (EventXML temp in upcomingList)
+                {
+                    // Parse every event and add row into the table
+                    DataRow row = eventsUCF.NewRow();
+
+                    row[0] = temp.title;
+                    row[1] = "Public";
+                    row[2] = temp.description;
+                    row[3] = temp.startTime;
+                    row[4] = temp.endTime;
+                    row[5] = temp.startDate;
+                    row[6] = temp.location;
+                    row[7] = temp.url;
+
+                    eventsUCF.Rows.Add(row);
+                }
+
+                GridView_UniversityEvents0.DataSource = eventsUCF;
+                GridView_UniversityEvents0.DataBind();
             }
-
-            foreach (EventXML temp in upcomingList)
-            {
-                DataRow row = eventsUCF.NewRow();
-
-                row[0] = temp.title;
-                row[1] = "Public";
-                row[2] = temp.description;
-                row[3] = temp.startTime;
-                row[4] = temp.endTime;
-                row[5] = temp.startDate;
-                row[6] = temp.location;
-                row[7] = temp.url;
-
-                eventsUCF.Rows.Add(row);
-            }
-
-            GridView_UniversityEvents0.DataSource = eventsUCF;
-            GridView_UniversityEvents0.DataBind();
 
             foreach (var value in qry_Events)
             {
@@ -142,25 +158,85 @@ namespace college_event
             Load_RSO();
         }
 
-        protected void private_button_onClick(object sender, EventArgs e)
+        protected void private_button_onClick()
         {
 
             // View Events in the University
-            DataTable table_view_events = new DataTable();
+            DataTable table_view_events_private = new DataTable();
+            DataTable eventsUCF = new DataTable();
 
-            table_view_events.Columns.Add(new DataColumn("Event", typeof(string)));
-            table_view_events.Columns.Add(new DataColumn("Category", typeof(string)));
-            table_view_events.Columns.Add(new DataColumn("Description", typeof(string)));
-            table_view_events.Columns.Add(new DataColumn("Start", typeof(TimeSpan)));
-            table_view_events.Columns.Add(new DataColumn("End", typeof(TimeSpan)));
-            table_view_events.Columns.Add(new DataColumn("Date", typeof(string)));
-            table_view_events.Columns.Add(new DataColumn("Contact", typeof(string)));
-            table_view_events.Columns.Add(new DataColumn("Email", typeof(string)));
-            table_view_events.Columns.Add(new DataColumn("Location", typeof(string)));
-            table_view_events.Columns.Add(new DataColumn("Address", typeof(string)));
+            table_view_events_private.Columns.Add(new DataColumn("Event", typeof(string)));
+            table_view_events_private.Columns.Add(new DataColumn("Category", typeof(string)));
+            table_view_events_private.Columns.Add(new DataColumn("Description", typeof(string)));
+            table_view_events_private.Columns.Add(new DataColumn("Start", typeof(TimeSpan)));
+            table_view_events_private.Columns.Add(new DataColumn("End", typeof(TimeSpan)));
+            table_view_events_private.Columns.Add(new DataColumn("Date", typeof(string)));
+            table_view_events_private.Columns.Add(new DataColumn("Contact", typeof(string)));
+            table_view_events_private.Columns.Add(new DataColumn("Email", typeof(string)));
+            table_view_events_private.Columns.Add(new DataColumn("Location", typeof(string)));
+            table_view_events_private.Columns.Add(new DataColumn("Address", typeof(string)));
+
+            eventsUCF.Columns.Add(new DataColumn("Event", typeof(string)));
+            eventsUCF.Columns.Add(new DataColumn("Category", typeof(string)));
+            eventsUCF.Columns.Add(new DataColumn("Description", typeof(string)));
+            eventsUCF.Columns.Add(new DataColumn("Start", typeof(TimeSpan)));
+            eventsUCF.Columns.Add(new DataColumn("End", typeof(TimeSpan)));
+            eventsUCF.Columns.Add(new DataColumn("Date", typeof(string)));
+            eventsUCF.Columns.Add(new DataColumn("Location", typeof(string)));
+            eventsUCF.Columns.Add(new DataColumn("URL", typeof(string)));
 
             var qry_Events = (from temp in db.Events
                               select temp).Where(x => x.email.Contains(domain) && (x.eCategory == "Private" && x.status == false)).ToList();
+
+            // Create event stream objects for 2 webpages
+            EventStream todayES = new EventStream("https://events.ucf.edu/feed.xml");
+            EventStream upcomingES = new EventStream("https://events.ucf.edu/upcoming/feed.xml");
+            String[] email = Session["uid"].ToString().Split('@');
+
+            // Check if student belongs to UCF
+            if (email[1].Equals("knights.ucf.edu"))
+            {
+                // Invoke getEvents()
+                List<EventXML> todayList = todayES.getEvents();
+                List<EventXML> upcomingList = upcomingES.getEvents();
+
+                foreach (EventXML temp in todayList)
+                {
+                    // Parse every event and add row into the table
+                    DataRow row = eventsUCF.NewRow();
+
+                    row[0] = temp.title;
+                    row[1] = "Public";
+                    row[2] = temp.description;
+                    row[3] = temp.startTime;
+                    row[4] = temp.endTime;
+                    row[5] = temp.startDate;
+                    row[6] = temp.location;
+                    row[7] = temp.url;
+
+                    eventsUCF.Rows.Add(row);
+                }
+
+                foreach (EventXML temp in upcomingList)
+                {
+                    // Parse every event and add row into the table
+                    DataRow row = eventsUCF.NewRow();
+
+                    row[0] = temp.title;
+                    row[1] = "Public";
+                    row[2] = temp.description;
+                    row[3] = temp.startTime;
+                    row[4] = temp.endTime;
+                    row[5] = temp.startDate;
+                    row[6] = temp.location;
+                    row[7] = temp.url;
+
+                    eventsUCF.Rows.Add(row);
+                }
+
+                GridView_UniversityEvents0.DataSource = eventsUCF;
+                GridView_UniversityEvents0.DataBind();
+            }
 
             foreach (var value in qry_Events)
             {
@@ -175,7 +251,7 @@ namespace college_event
                     y = v.address;
                 }
 
-                DataRow row = table_view_events.NewRow();
+                DataRow row = table_view_events_private.NewRow();
                 row[0] = value.eType;
                 row[1] = value.eCategory;
                 row[2] = value.eDescription;
@@ -188,35 +264,63 @@ namespace college_event
                 row[7] = value.email;
                 row[8] = x;
                 row[9] = y;
-                table_view_events.Rows.Add(row);
+                table_view_events_private.Rows.Add(row);
             }
-            GridView_UniversityEvents.DataSource = table_view_events;
+            GridView_UniversityEvents.DataSource = table_view_events_private;
             GridView_UniversityEvents.DataBind();
             Load_RSO();
         }
 
         protected void Load_RSO()
         {
+
             // RSO GridView
             DataTable table_joinRSO = new DataTable();
+            SqlConnection con;
+            SqlCommand cmd;
 
+            // Create table
             table_joinRSO.Columns.Add(new DataColumn("RSO", typeof(string)));
             table_joinRSO.Columns.Add(new DataColumn("Number of Members", typeof(int)));
 
-            var qry_RSO = (from temp in db.RSOs
-                           select temp).GroupBy(x => x.organisation_name).Select(y => y.FirstOrDefault()).Where(x => x.email.Contains(domain)).ToList();
-
-            foreach (var value in qry_RSO)
+            try
             {
-                var qry_count = (from temp1 in db.RSOs
-                                 where value.organisation_name == temp1.organisation_name
-                                 select temp1).Count();
+                con = new SqlConnection(strcon);
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+                }
 
-                DataRow row = table_joinRSO.NewRow();
-                row[0] = value.organisation_name;
-                row[1] = qry_count;
-                table_joinRSO.Rows.Add(row);
+                // Get all RSOs for university
+                cmd = new SqlCommand("SELECT * FROM RSO LEFT JOIN university_profile up ON RSO.Uni_ID = up.Uni_ID;", con);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                // Add all RSOs to the table
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        DataRow row = table_joinRSO.NewRow();
+                        row[0] = dr.GetValue(1).ToString();
+                        row[1] = dr.GetValue(3).ToString();
+                        table_joinRSO.Rows.Add(row);
+
+                    }
+                }
+                else
+                {
+                    Response.Write("<script>alert('Couldnt load RSOs');</script>");
+                }
+
+                dr.Close();
             }
+            catch(Exception ex)
+            {
+                Response.Write("<script>alert('" + ex.Message + "');</script>");
+            }
+
             GridView_RSO.DataSource = table_joinRSO;
             GridView_RSO.DataBind();
         }
@@ -227,84 +331,145 @@ namespace college_event
             Response.Redirect("CreateNewRSO.aspx");
         }
 
+        protected bool CheckInRSO(int rso_id)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(strcon);
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+                }
+                
+                // Check if user is already in RSO
+                SqlCommand cmd = new SqlCommand("SELECT * FROM RSOMemberList WHERE RSO_ID = @rso_id AND uid = @email;", con);
+
+                cmd.Parameters.AddWithValue("@rso_id", rso_id);
+                cmd.Parameters.AddWithValue("@email", Session["uid"].ToString());
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                if (dt.Rows.Count >= 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                e.Message.ToString();
+            }
+
+            return false;
+        }
+        
         // Adding new member to RSO
         protected void Join_Click(object sender, EventArgs e)
         {
+            // Get organization name
             GridViewRow clickedRow = ((Button)sender).NamingContainer as GridViewRow;
-            var organisation_name = clickedRow.Cells[1].Text;
-            int num_of_members = Convert.ToInt32(clickedRow.Cells[2].Text);
+            String org_name = clickedRow.Cells[2].Text;
 
-            var qry_members = (from rso in db.RSOs
-                               where rso.organisation_name == organisation_name
-                               select rso);
-
-            var add_member = new RSO();
-            var rand = new Random();
-            int college_id = rand.Next(100100, 200100);
-            add_member.college_id = college_id;
-            add_member.organisation_name = organisation_name;
-            add_member.group_member = Session["name"].ToString();
-            add_member.email = Session["uid"].ToString();
-            add_member.group_administrator = false;
-            add_member.creator = false;
-            num_of_members++;
             try
             {
-                db.RSOs.InsertOnSubmit(add_member);
-                db.SubmitChanges();
-                Response.Write("<script>alert('Member successfully joined the RSO.');</script>");
+                SqlConnection con = new SqlConnection(strcon);
+                SqlCommand cmd;
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+                }
+
+                // Get the RSO_ID
+                cmd = new SqlCommand("SELECT RSO_ID FROM RSO WHERE organisation_name = @org_name;", con);
+                cmd.Parameters.AddWithValue("@org_name", org_name);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                SqlDataReader dr = cmd.ExecuteReader();
+                int rso_id = -1;
+
+                if (dr.HasRows)
+                {
+                    if (dr.Read())
+                    {
+                        rso_id = Int32.Parse(dr.GetValue(0).ToString());
+                    }
+                }
+                dr.Close();
+
+                if (CheckInRSO(rso_id))
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('User already in RSO!')", true);
+                    return;
+                }
+
+                // Insert into table
+                cmd = new SqlCommand("INSERT INTO RSOMemberList(RSO_ID, name, uid, admin) values(@rso_id, '" + Session["name"].ToString() + "', '" +
+                    Session["uid"].ToString() + "', 0"+ ");", con);
+                cmd.Parameters.AddWithValue("@rso_id", rso_id);
+                cmd.ExecuteNonQuery();
+                con.Close();
+                Load_RSO();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Response.Write("<script>alert('An Error Occured. Please try again.');</script>");
+                ex.Message.ToString();
             }
-
-
-            if (num_of_members == 5) 
-            {
-                AssignAdmin(organisation_name);
-            }
-        }
-
-        // Assign admin after 5 members have joined the RSO
-        protected void AssignAdmin(string org_name)
-        {
-            List<string> members = new List<string>();
-
-            var qry_RSO = (from rso in db.RSOs
-                             where rso.organisation_name == org_name
-                             select rso).ToList();
-
-            foreach(var member in qry_RSO)
-            {
-                members.Add(member.college_id.ToString());
-            }
-
-            var rand = new Random();
-            int random_member = rand.Next(members.Count);
-            string choosen_college_id = members[random_member];
-
-            RSO qry_assignAdmin = db.RSOs.Single(x => x.college_id == Convert.ToInt32(choosen_college_id));
-            qry_assignAdmin.group_administrator = true;
-            db.SubmitChanges();
         }
 
         // Adding new member to RSO
         protected void Exit_Click(object sender, EventArgs e)
         {
+            // Get organization name
             GridViewRow clickedRow = ((Button)sender).NamingContainer as GridViewRow;
-            var organisation_name = clickedRow.Cells[1].Text;
+            String org_name = clickedRow.Cells[2].Text;
 
-            RSO rso = db.RSOs.Single(x => x.organisation_name == organisation_name && 
-                                          Session["uid"].ToString() == x.email);
             try
             {
-                db.RSOs.DeleteOnSubmit(rso);
-                db.SubmitChanges();
+                SqlConnection con = new SqlConnection(strcon);
+                SqlCommand cmd;
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+                }
+
+                // Get the RSO_ID
+                cmd = new SqlCommand("SELECT RSO_ID FROM RSO WHERE organisation_name = @org_name;", con);
+                cmd.Parameters.AddWithValue("@org_name", org_name);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                SqlDataReader dr = cmd.ExecuteReader();
+                int rso_id = -1;
+
+                if (dr.HasRows)
+                {
+                    if (dr.Read())
+                    {
+                        rso_id = Int32.Parse(dr.GetValue(0).ToString());
+                    }
+                }
+                dr.Close();
+
+                if (!CheckInRSO(rso_id))
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('User is not in RSO!')", true);
+                    return;
+                }
+
+                // Delete from table
+                cmd = new SqlCommand("DELETE FROM RSOMemberList WHERE uid = @email AND RSO_ID = @rso_id;", con);
+                cmd.Parameters.AddWithValue("@email", Session["uid"].ToString());
+                cmd.Parameters.AddWithValue("@rso_id", rso_id);
+                cmd.ExecuteNonQuery();
+                con.Close();
+                Load_RSO();
+
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Response.Write("<script>alert('An Error Occured. Please try again.');</script>");
+                ex.Message.ToString();
             }
         }
 
@@ -410,6 +575,28 @@ namespace college_event
         protected void GridView_UniversityEvents0_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("CreateUniversityProfile.aspx");
+        }
+
+        protected void Create_Event_Button_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("CreateEventPage.aspx");
+        }
+
+        protected void public_button_Click(object sender, EventArgs e)
+        {
+            public_button_onClick();
+        }
+
+        protected void private_button_Click(object sender, EventArgs e)
+        {
+            private_button_onClick();
+            GridView_UniversityEvents0.DataSource = null;
+            GridView_UniversityEvents0.DataBind();
         }
 
         // Star rating implementation

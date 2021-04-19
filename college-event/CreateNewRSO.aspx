@@ -9,23 +9,19 @@
         
         <div style="margin-left:12%; margin-right:12%">        
             <div class="form-group row" style="margin-top: 5px; margin-bottom:10px">
-                <label class="col-sm-2 col-form-label">Organisation Name</label>
+                <label class="col-sm-2 col-form-label">Organization Name</label>
                 <div class="col-sm-10">
                     <asp:TextBox runat="server" ID="org_name" type="text" class="form-control" placeholder="Organisation Name"></asp:TextBox>
                 </div>
             </div>
 
             <div class="form-group row" style="margin-top: 5px; margin-bottom:10px">
-                <label class="col-sm-2 col-form-label">Name</label>
-                <div class="col-sm-10">
-                    <asp:TextBox runat="server" ID="name" type="text" class="form-control" placeholder="Name"></asp:TextBox>
+                &nbsp;<div class="col-sm-10">
                 </div>
             </div>
 
             <div class="form-group row" style="margin-top: 5px; margin-bottom:10px">
-                <label class="col-sm-2 col-form-label">College ID</label>
-                <div class="col-sm-10">
-                    <asp:TextBox runat="server" ID="college_id" class="form-control" placeholder="College ID"></asp:TextBox>
+                &nbsp;<div class="col-sm-10">
                 </div>
             </div>
 

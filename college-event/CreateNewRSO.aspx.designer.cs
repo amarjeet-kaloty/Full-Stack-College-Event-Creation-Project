@@ -24,24 +24,6 @@ namespace college_event
         protected global::System.Web.UI.WebControls.TextBox org_name;
 
         /// <summary>
-        /// name control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox name;
-
-        /// <summary>
-        /// college_id control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox college_id;
-
-        /// <summary>
         /// email control.
         /// </summary>
         /// <remarks>

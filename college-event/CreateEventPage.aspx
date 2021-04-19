@@ -90,7 +90,10 @@
             <div class="form-group row" style="margin-top: 5px; margin-bottom:10px">
                 <label class="col-sm-2 col-form-label">Contact email</label>
                 <div class="col-sm-10">
-                    <asp:TextBox runat="server"  ID="contact_email" type="email" class="form-control" placeholder="Contact email"></asp:TextBox>
+                    <asp:TextBox runat="server"  ID="contact_email" type="email" class="form-control" placeholder="Contact email" OnTextChanged="contact_email_TextChanged"></asp:TextBox>
+                    <asp:Label ID="Label1" runat="server" Text="RSO"></asp:Label>
+                    <asp:DropDownList ID="DropDownList1" runat="server" Height="56px" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" Width="115px">
+                    </asp:DropDownList>
                 </div>
             </div>
 

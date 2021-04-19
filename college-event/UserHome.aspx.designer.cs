@@ -15,6 +15,33 @@ namespace college_event
     {
 
         /// <summary>
+        /// public_button control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button public_button;
+
+        /// <summary>
+        /// private_button control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button private_button;
+
+        /// <summary>
+        /// rso_button control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button rso_button;
+
+        /// <summary>
         /// GridView_UniversityEvents control.
         /// </summary>
         /// <remarks>
@@ -31,6 +58,15 @@ namespace college_event
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridView_UniversityEvents0;
+
+        /// <summary>
+        /// Create_Event_Button control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Create_Event_Button;
 
         /// <summary>
         /// GridView_RSO control.

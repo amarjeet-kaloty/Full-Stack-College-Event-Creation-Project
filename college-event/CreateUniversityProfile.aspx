@@ -30,18 +30,14 @@
 
 
             <div class="form-group row" style="margin-top: 5px; margin-bottom:10px">
-                <label class="col-sm-2 col-form-label">Location</label>
+                <label class="col-sm-2 col-form-label">Email Extension</label>
                 <div class="col-sm-10">
-                    <asp:TextBox type="text" class="form-control" runat="server" placeholder="Location" ID="location"></asp:TextBox>
+                    <asp:TextBox type="text" class="form-control" runat="server" placeholder="Location" ID="emailExtension"></asp:TextBox>
                 </div>
             </div>
 
             <div class="form-group row" style="margin-top: 5px; margin-bottom:10px">
-                <label class="col-sm-2 col-form-label">Description</label>
-                <div class="col-sm-10">
-                    <asp:TextBox type="text" class="form-control" runat="server" placeholder="Description" ID="description"></asp:TextBox>
-                </div>
-            </div>
+                &nbsp;</div>
 
             <div class="form-group row" style="margin-top: 5px; margin-bottom:10px">
                 <label class="col-sm-2 col-form-label">Number of Students</label>
